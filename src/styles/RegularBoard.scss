@@ -1,0 +1,9 @@
+.regular-board-container {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  border: 2px black solid;
+  height: fit-content;
+  width: fit-content;
+  align-items: center;
+  justify-content: center;
+}
