@@ -3,7 +3,7 @@ import '../styles/RegularBoard.scss';
 import Region from './Region';
 
 const RegularBoard = () => {
-  const [board, setBoard] = useState<boardType | null>(null);
+  const [board, setBoard] = useState<any | null>(null);
 
   return (
     <div className='regular-board-container'>
@@ -22,16 +22,3 @@ const RegularBoard = () => {
 
 export default RegularBoard;
 
-type boardType = [
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num],
-  [num, num, num, num, num, num, num, num, num]
-];
-
-type num = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9;
