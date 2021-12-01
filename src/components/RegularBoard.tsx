@@ -6,7 +6,7 @@ import Region from './Region';
 const RegularBoard = (props: RegularBoardProps) => {
   const board = props.board;
 
-  const regions = rowsToRegions(board);
+  const regions = board ? rowsToRegions(board) : [[],[],[],[],[],[],[],[],[]];
   const regionComponents = regions.map((region, idx) => <Region region={region} key={idx} />); 
 
   return (
@@ -19,5 +19,5 @@ const RegularBoard = (props: RegularBoardProps) => {
 export default RegularBoard;
 
 export interface RegularBoardProps {
-  board: boardType;
+  board: boardType | null;
 }

@@ -1,12 +1,13 @@
-import { num } from '../logic/Game';
+import { squareType } from '../logic/Game';
 import '../styles/Square.scss';
 
 const Square = (props: SquareProps) => {
-  const num = props.num;
+  const { square } = props;
 
+  const squareClass = square.conflict ? 'square conflict' : 'square';
   return (
-    <div className='square'>
-      {num}
+    <div className={squareClass}>
+      {square.num}
     </div>
   );
 };
@@ -14,5 +15,5 @@ const Square = (props: SquareProps) => {
 export default Square;
 
 export interface SquareProps {
-  num: num;
+  square: squareType;
 }

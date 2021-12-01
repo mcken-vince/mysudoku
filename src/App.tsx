@@ -5,10 +5,11 @@ import { generateBoard, boardType } from './logic/Game';
 import { useState } from 'react';
 
 function App() {
-  const [board, setBoard] = useState<boardType>(generateBoard());
+  const [board, setBoard] = useState<boardType | null>(null);
 
   const clickNewGame = () => {
-    setBoard(generateBoard());
+    const newBoard = generateBoard();
+    setBoard(newBoard);
   };
 
   return (
@@ -17,8 +18,9 @@ function App() {
         <Button onClick={clickNewGame}>New Game</Button>
         <Button>Restart</Button>
       </div>
-      
-      <RegularBoard board={board}/>
+      <div className='board'>
+        <RegularBoard board={board}/>
+      </div>
     </div>
   );
 };
