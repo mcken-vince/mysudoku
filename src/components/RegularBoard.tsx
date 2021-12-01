@@ -1,4 +1,5 @@
-import { rowsToRegions, boardType } from '../logic/Game';
+import { rowsToRegions } from '../logic/Game';
+import { gridType } from '../logic/Main';
 import '../styles/RegularBoard.scss';
 import Region from './Region';
 
@@ -19,5 +20,5 @@ const RegularBoard = (props: RegularBoardProps) => {
 export default RegularBoard;
 
 export interface RegularBoardProps {
-  board: boardType | null;
+  board: gridType | null;
 }

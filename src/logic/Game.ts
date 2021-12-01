@@ -1,5 +1,6 @@
+import { blankGrid, checkGrid, fillGrid, gridType, solveGrid } from "./Main";
 
-export const shuffleRow = (array: rowType) => {
+export const shuffleRow = (array: any[]): any[] => {
   let currentIndex: number = array.length;
   let randomIndex: number;
   // console.log('starting index: ', currentIndex);
@@ -26,55 +27,11 @@ const switchSquares = (board: boardType, index1: {row: number, column: number}, 
   board[index2.row][index2.column] = temp;
 };
 
-export const generateBoard = (difficulty: DifficultyType = 'default'): boardType  => {
-  const row: rowType = [
-    { num: 1, conflict: false },
-    { num: 2, conflict: false },
-    { num: 3, conflict: false },
-    { num: 4, conflict: false },
-    { num: 5, conflict: false },
-    { num: 6, conflict: false },
-    { num: 7, conflict: false },
-    { num: 8, conflict: false },
-    { num: 9, conflict: false }
-  ];
-  const numbers: boardType = [ [...row], [...row], [...row], [...row], [...row], [...row], [...row], [...row], [...row] ];
-  const board: boardType = numbers.map((r: rowType) => shuffleRow(r));
-  // checkRows(board);
-  let [columnsHaveConflicts, columnConflicts] = checkColumns(board);
-  let randomIndex1: number;
-  let randomIndex2: number;
-  while (columnsHaveConflicts) {
-    let x: number = randomIndex(8);
-    const conflictsInRow = columnConflicts.filter(c => c.row === x);
-    if (conflictsInRow.length < 2) {
-      continue;
-    } else if (conflictsInRow.length > 2) {
-      randomIndex1 = randomIndex(conflictsInRow.length - 1);
-      randomIndex2 = randomIndex(conflictsInRow.length - 1);
-      if (randomIndex2 === randomIndex1) {
-        if (randomIndex1 === conflictsInRow.length - 1) randomIndex2 = randomIndex2 - 1;
-        else randomIndex2 = randomIndex2 + 1;
-      }
-    } else {
-      randomIndex1 = 0;
-      randomIndex2 = 1; 
-    }
-    if (randomIndex1 && randomIndex2) {
-      switchSquares(board, conflictsInRow[randomIndex1], conflictsInRow[randomIndex2]);
-    }
-    [columnsHaveConflicts, columnConflicts] = checkColumns(board);
-  };
-  
-  console.log('columnConflicts in Generate Board: ', columnConflicts);
-  // checkRegions(board);
-  // let conflicts = checkRows(board) && checkColumns(board) && checkRegions(board);
-  // while (conflicts) {
-    // conflicts = checkRows(board) && checkColumns(board) && checkRegions(board)
-  // }
 
-
-  return board;
+export const generateBoard = (difficulty: DifficultyType = 'default')  => {
+  const newGrid = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
+  fillGrid(newGrid);
+  return newGrid;
 };
 
 export const checkRows = (board: boardType): boolean => {
@@ -131,18 +88,18 @@ export const hasConflicts = (board: boardType): boolean => {
   return true;
 };
 
-export const rowsToRegions = (board: boardType) => {
+export const rowsToRegions = (grid: gridType) => {
   const boardByRegions = [];
   // This works, but should be refactored
-  boardByRegions.push([ ...board[0].slice(0, 3), ...board[1].slice(0, 3), ...board[2].slice(0, 3) ]);
-  boardByRegions.push([ ...board[0].slice(3, 6), ...board[1].slice(3, 6), ...board[2].slice(3, 6) ]);
-  boardByRegions.push([ ...board[0].slice(6, 9), ...board[1].slice(6, 9), ...board[2].slice(6, 9) ]);
-  boardByRegions.push([ ...board[3].slice(0, 3), ...board[4].slice(0, 3), ...board[5].slice(0, 3) ]);
-  boardByRegions.push([ ...board[3].slice(3, 6), ...board[4].slice(3, 6), ...board[5].slice(3, 6) ]);
-  boardByRegions.push([ ...board[3].slice(6, 9), ...board[4].slice(6, 9), ...board[5].slice(6, 9) ]);
-  boardByRegions.push([ ...board[6].slice(0, 3), ...board[7].slice(0, 3), ...board[8].slice(0, 3) ]);
-  boardByRegions.push([ ...board[6].slice(3, 6), ...board[7].slice(3, 6), ...board[8].slice(3, 6) ]);
-  boardByRegions.push([ ...board[6].slice(6, 9), ...board[7].slice(6, 9), ...board[8].slice(6, 9) ]);
+  boardByRegions.push([ ...grid[0].slice(0, 3), ...grid[1].slice(0, 3), ...grid[2].slice(0, 3) ]);
+  boardByRegions.push([ ...grid[0].slice(3, 6), ...grid[1].slice(3, 6), ...grid[2].slice(3, 6) ]);
+  boardByRegions.push([ ...grid[0].slice(6, 9), ...grid[1].slice(6, 9), ...grid[2].slice(6, 9) ]);
+  boardByRegions.push([ ...grid[3].slice(0, 3), ...grid[4].slice(0, 3), ...grid[5].slice(0, 3) ]);
+  boardByRegions.push([ ...grid[3].slice(3, 6), ...grid[4].slice(3, 6), ...grid[5].slice(3, 6) ]);
+  boardByRegions.push([ ...grid[3].slice(6, 9), ...grid[4].slice(6, 9), ...grid[5].slice(6, 9) ]);
+  boardByRegions.push([ ...grid[6].slice(0, 3), ...grid[7].slice(0, 3), ...grid[8].slice(0, 3) ]);
+  boardByRegions.push([ ...grid[6].slice(3, 6), ...grid[7].slice(3, 6), ...grid[8].slice(3, 6) ]);
+  boardByRegions.push([ ...grid[6].slice(6, 9), ...grid[7].slice(6, 9), ...grid[8].slice(6, 9) ]);
 
   return boardByRegions;
 };
