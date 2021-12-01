@@ -28,10 +28,11 @@ const switchSquares = (board: boardType, index1: {row: number, column: number}, 
 };
 
 
-export const generateBoard = (difficulty: DifficultyType = 'default')  => {
+export const generateBoard = (difficulty: DifficultyType = 'default'): any  => {
   const newGrid = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
+ 
   fillGrid(newGrid);
-  return newGrid;
+  if (checkGrid(newGrid)) return newGrid;
 };
 
 export const checkRows = (board: boardType): boolean => {

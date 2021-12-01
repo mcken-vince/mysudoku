@@ -116,8 +116,7 @@ export const fillGrid = (grid: gridType) => {
     // console.log(`${row}${col} = 0`)
     // grid[row][col] = 0;
   };
-  // console.log('reached end of fillGrid')
-  return false;
+  console.log('reached end of fillGrid')
 };
 
 
