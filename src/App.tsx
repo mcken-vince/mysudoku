@@ -12,12 +12,7 @@ function App() {
   const clickNewGame = () => {
     setLoading(true);
     let newGrid = generateBoard();
-    while(true) {
-      if (newGrid) break;
-      else {
-        newGrid = generateBoard();
-      }    
-    }
+    
     setBoard(newGrid);
     setLoading(false);
   };
