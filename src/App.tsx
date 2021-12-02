@@ -12,7 +12,6 @@ function App() {
   const clickNewGame = () => {
     setLoading(true);
     let newGrid = generateBoard();
-    
     setBoard(newGrid);
     setLoading(false);
   };

@@ -69,7 +69,7 @@ export const solveGrid = (grid: gridType) => {
             }
             if (checkGrid(grid)) {
               counter++;
-              console.log('counter: ', counter)
+              console.log('counter: ', counter);
               break;
             } else {
               if (solveGrid(grid)) return true;
@@ -113,10 +113,10 @@ export const fillGrid = (grid: gridType) => {
       };
       break;
     }
+    // There's a hole here somewhere, incomplete grids can slip through the cracks.
     // console.log(`${row}${col} = 0`)
     // grid[row][col] = 0;
   };
-  console.log('reached end of fillGrid')
 };
 
 
