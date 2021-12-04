@@ -1,0 +1,23 @@
+.number-selection {
+  display: grid;
+  grid-template-columns: 33.3% 33.3% 33.3%;
+  
+  .clickable {
+    border: 1px black solid;
+    height: 3em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover {
+      background-color: lightcyan;
+      cursor: pointer;
+    }
+  }
+
+  .number-selection-number {
+    width: 3em;
+  }
+  .number-selection-clear {
+    width: 300%;
+  }
+}
