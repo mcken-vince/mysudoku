@@ -1,7 +1,7 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, nonEmptySquares } from './logic/Game';
+import { generateBoard, nonEmptySquares, isEqualGrid } from './logic/Game';
 import {  checkGrid, gridType } from './logic/Main';
 import { useState } from 'react';
 import NumberSelection from './components/NumberSelection';
@@ -9,8 +9,10 @@ import NumberSelection from './components/NumberSelection';
 function App() {
   const [grid, setGrid] = useState<gridType | null>(null);
   const [initialGrid, setInitialGrid] = useState<{row: number, col: number}[] | null>(null);
+  const [solutionGrid, setSolutionGrid] = useState<gridType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
+  const [selectedSquare, setSelectedSquare] = useState<{row: number ,col: number, value: number, changeable: boolean} | null>(null);
 
   const handleValueChange = (row: number, col: number, value: number) => {
     setGrid(prev => {
@@ -23,14 +25,16 @@ function App() {
   const clickNewGame = async () => {
     setComplete(false);
     setLoading(true);
-    let newGrid = await generateBoard();
+    let [newGrid, solvedGrid] = await generateBoard();
     setGrid(newGrid);
+    setSolutionGrid(solvedGrid);
     setInitialGrid(nonEmptySquares(newGrid));
     setLoading(false);
   };
 
   const clickValidate = () => {
-    if (grid && checkGrid(grid)) {
+
+    if (grid && solutionGrid && isEqualGrid(grid, solutionGrid)) {
       setComplete(true);
     }
   };

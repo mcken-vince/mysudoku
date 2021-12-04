@@ -42,10 +42,11 @@ export const nonEmptySquares = (grid: gridType): {row: number, col: number}[] =>
   return nonEmptySquares;
 };
 
-export const generateBoard = async (difficulty: DifficultyType = 'default'): Promise<gridType>  => {
+export const generateBoard = async (difficulty: DifficultyType = 'default'): Promise<gridType[]>  => {
   let blankGrid: gridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
   let newGrid: gridType = blankGrid;
   fillGrid(newGrid);
+  const solutionGrid = [[...newGrid[0]],[...newGrid[1]],[...newGrid[2]],[...newGrid[3]],[...newGrid[4]],[...newGrid[5]],[...newGrid[6]],[...newGrid[7]],[...newGrid[8]]];
   let count = 1;
   let squaresToRemove: number;
 
@@ -65,7 +66,16 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
     }
   };
   console.log('try count: ', count);
-  return newGrid;
+  return [newGrid, solutionGrid];
+};
+
+export const isEqualGrid = (grid1: gridType, grid2: gridType): boolean => {
+  for (let r = 0; r < 0; r++) {
+    for (let c = 0; c < 0; c++) {
+      if (grid1[r][c] !== grid2[r][c]) return false;
+    };
+  };
+  return true;
 };
 
 export const rowsToRegions = (grid: gridType) => {
