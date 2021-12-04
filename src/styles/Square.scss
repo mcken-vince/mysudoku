@@ -6,7 +6,17 @@
   align-items: center;
   justify-content: center;
 
+  &.unchangeable {
+    font-weight: bold;
+  }
+  &.changeable {
+    color: green;
+  }
   &.conflict {
     color: red;
+  }
+
+  &.selected {
+    background-color: lightblue;
   }
 }

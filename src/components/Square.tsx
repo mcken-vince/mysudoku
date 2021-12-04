@@ -1,18 +1,26 @@
+import { MouseEvent, Ref } from 'react';
 import '../styles/Square.scss';
 
 const Square = (props: SquareProps) => {
-  const { square } = props;
+  const { value, onValueChange } = props;
+  
+  const handleSquareClick = (event: MouseEvent<HTMLDivElement>) => {
+    // event.currentTarget.classList.toggle('selected');
+  };
 
-  const squareClass = 'square';
+  const squareClasses: string = (value === 0) ? 'square changeable' : 'square unchangeable';
+
   return (
-    <div className={squareClass}>
-      {square}
+    <div  onClick={handleSquareClick} className={squareClasses}>         
+      {value === 0 ? '' : value}
     </div>
+    
   );
 };
 
 export default Square;
 
 export interface SquareProps {
-  square: number;
-}
+  value: number;
+  onValueChange: Function;
+};

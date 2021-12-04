@@ -1,4 +1,4 @@
-import { checkGrid, fillGrid, gridType } from "./Main";
+import { fillGrid, gridType, removeNumbers } from "./Main";
 
 export const shuffleRow = (array: any[]): any[] => {
   let currentIndex: number = array.length;
@@ -13,22 +13,17 @@ export const shuffleRow = (array: any[]): any[] => {
   return array;
 };
 
-// const randomIndex = (max: number): number => {
-//   const number: number = Math.floor(Math.random() * max);
-//   console.log('randomNumber: ', number)
-//   return number;
-// };
+export const randomIndex = (max: number): number => {
+  const number: number = Math.floor(Math.random() * max);
+  return number;
+};
 
 export const generateBoard = (difficulty: DifficultyType = 'default'): gridType  => {
   let blankGrid: gridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
   let newGrid: gridType = blankGrid;
   fillGrid(newGrid);
-
-  while (true) {
-    if (checkGrid(newGrid)) break;
-    newGrid = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];;
-    fillGrid(newGrid);
-  }
+  
+  removeNumbers(newGrid, 17);
 
   return newGrid;
 };
