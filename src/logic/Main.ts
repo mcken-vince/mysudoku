@@ -77,8 +77,8 @@ export const solveGrid = (grid: gridType) => {
               if (solveGrid(grid)) return true;
             }
            
-            grid[row][col] = 0;
           }
+          grid[row][col] = 0;
         }
       };
       // If there is a square that does not have a compatible number then break out of the loop
@@ -133,8 +133,8 @@ export const fillGrid = (grid: gridType) => {
 };
 
 export const removeNumbers = (grid: gridType, removeCount: number) => {
-  let attempts = 5;
-  // counter = 1;
+  let attempts = 2;
+  counter = 1;
   while (attempts > 0) {
     let row = randomIndex(8);
     let col = randomIndex(8);
@@ -144,6 +144,7 @@ export const removeNumbers = (grid: gridType, removeCount: number) => {
       col = randomIndex(8);
     };
     let backup = grid[row][col];
+    console.log('backup: ', backup);
     grid[row][col] = 0;
 
     // Make a full copy of the grid;
@@ -154,12 +155,13 @@ export const removeNumbers = (grid: gridType, removeCount: number) => {
         copyGrid[r].push(grid[r][c]);
       };
     };
-
-    // counter = 0;
+    counter = 0;
     solveGrid(copyGrid);
+    console.log('counter after solveGrid: ', counter)
     if (counter !== 1) {
+      console.log("that won't work, counter =", counter)
       grid[row][col] = backup;
-      attempts -= 1;
+      attempts--;
     }
   };
 };

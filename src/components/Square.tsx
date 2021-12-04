@@ -8,11 +8,11 @@ const Square = (props: SquareProps) => {
     // event.currentTarget.classList.toggle('selected');
   };
 
-  const squareClasses: string = (value === 0) ? 'square changeable' : 'square unchangeable';
+  const squareClasses: string = (value === 0) ? 'square zero' : 'square';
 
   return (
     <div  onClick={handleSquareClick} className={squareClasses}>         
-      {value === 0 ? '' : value}
+      {value}
     </div>
     
   );

@@ -1,9 +1,9 @@
 .region {
   display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-columns: 4em 4em 4em;
   border: 2px black solid;
-  height: 10em;
-  width: 10em;
+  height: 12em;
+  width: 12em;
   justify-content: center;
 
 }

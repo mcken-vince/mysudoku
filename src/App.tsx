@@ -1,13 +1,14 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard } from './logic/Game';
+import { generateBoard, nonEmptySquares } from './logic/Game';
 import {  checkGrid, gridType } from './logic/Main';
 import { useState } from 'react';
 import NumberSelection from './components/NumberSelection';
 
 function App() {
   const [grid, setGrid] = useState<gridType | null>(null);
+  const [initialGrid, setInitialGrid] = useState<{row: number, col: number}[] | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
 
@@ -19,11 +20,12 @@ function App() {
     });
   };
 
-  const clickNewGame = () => {
+  const clickNewGame = async () => {
     setComplete(false);
     setLoading(true);
-    let newGrid = generateBoard();
+    let newGrid = await generateBoard();
     setGrid(newGrid);
+    setInitialGrid(nonEmptySquares(newGrid));
     setLoading(false);
   };
 
@@ -35,9 +37,12 @@ function App() {
 
   const clickNumber = (value: number | null) => {
     if (value) {
-
+      // if selectedSquare
+        // selectedSquare = value
+    
     } else {
-      
+      // if selectedSquare
+        // selectedSquare = 0  
     }
   };
 
@@ -48,11 +53,10 @@ function App() {
           <>
             <Button onClick={clickNewGame}>New Game</Button>
             <Button>Restart</Button>
-            <Button onClick={clickValidate}>Validate</Button>
+            { complete ?  <h1>You win!</h1> : <Button onClick={clickValidate}>Check Solution</Button> }
           </>
         }
       </div>
-        {complete && <h1>You win!</h1>}
         <RegularBoard grid={grid} onValueChange={handleValueChange}/>
         <NumberSelection handleClick={clickNumber}/>
     </div>
