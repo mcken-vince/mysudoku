@@ -1,14 +1,12 @@
-import { useEffect, useState } from 'react';
-import { rowsToRegions } from '../logic/Game';
-import { gridType } from '../logic/Main';
+import { rowsToRegions, GridType } from '../logic/Game';
 import '../styles/RegularBoard.scss';
 import Region from './Region';
 
 
 const RegularBoard = (props: RegularBoardProps) => {
-  const { grid, onValueChange } = props;
+  const { grid, selectSquare } = props;
   const regions = grid ? rowsToRegions(grid) : [[],[],[],[],[],[],[],[],[]];
-  const regionComponents = regions.map((region, idx) => <Region region={region} onValueChange={onValueChange} key={idx} />); 
+  const regionComponents = regions.map((region, idx) => <Region region={region} selectSquare={selectSquare} key={idx} />); 
 
   return (
     <div className='regular-board-container'>
@@ -20,6 +18,6 @@ const RegularBoard = (props: RegularBoardProps) => {
 export default RegularBoard;
 
 export interface RegularBoardProps {
-  grid: gridType | null;
-  onValueChange: Function;
+  grid: GridType | null;
+  selectSquare: Function;
 };

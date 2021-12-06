@@ -1,6 +1,6 @@
 import { shuffleRow, randomIndex } from "./Game";
 
-export const blankGrid: gridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
+export const blankGrid: NumberGridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
 
 let counter = 0;
 
@@ -10,7 +10,7 @@ const numberList = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
  * @param grid 
  * @returns isFilled
  */
-export const checkGrid = (grid: gridType): boolean => {
+export const checkGrid = (grid: NumberGridType): boolean => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (grid[row][col] === 0) {
@@ -23,7 +23,7 @@ export const checkGrid = (grid: gridType): boolean => {
   return true;
 };
 
-const whichBlock = (grid: gridType, row: number, col: number) => {
+const whichBlock = (grid: NumberGridType, row: number, col: number) => {
   let block = [];
   if (row < 3) {
     if (col < 3) {
@@ -53,7 +53,7 @@ const whichBlock = (grid: gridType, row: number, col: number) => {
   return block;
 };
 
-export const solveGrid = (grid: gridType) => {
+export const solveGrid = (grid: NumberGridType) => {
   for (let i = 0; i < 81; i++) {
     let row: number = Math.floor(i / 9);
     let col: number = i % 9;
@@ -88,7 +88,7 @@ export const solveGrid = (grid: gridType) => {
   return false;
 };
 
-export const fillGrid = (grid: gridType) => {
+export const fillGrid = (grid: NumberGridType) => {
   let thisGrid = grid;
   counter = 0;
   for (let i = 0; i < 81; i++) {
@@ -132,7 +132,7 @@ export const fillGrid = (grid: gridType) => {
   return false;
 };
 
-export const removeNumbers = (grid: gridType, removeCount: number) => {
+export const removeNumbers = (grid: NumberGridType, removeCount: number) => {
   let attempts = 2;
   counter = 1;
   while (attempts > 0) {
@@ -144,7 +144,7 @@ export const removeNumbers = (grid: gridType, removeCount: number) => {
       col = randomIndex(8);
     };
     let backup = grid[row][col];
-    console.log('backup: ', backup);
+    // console.log('backup: ', backup);
     grid[row][col] = 0;
 
     // Make a full copy of the grid;
@@ -157,9 +157,9 @@ export const removeNumbers = (grid: gridType, removeCount: number) => {
     };
     counter = 0;
     solveGrid(copyGrid);
-    console.log('counter after solveGrid: ', counter)
+    // console.log('counter after solveGrid: ', counter)
     if (counter !== 1) {
-      console.log("that won't work, counter =", counter)
+      // console.log("that won't work, counter =", counter)
       grid[row][col] = backup;
       attempts--;
     }
@@ -168,4 +168,4 @@ export const removeNumbers = (grid: gridType, removeCount: number) => {
 
 
 
-export type gridType = number[][];
+export type NumberGridType = number[][];

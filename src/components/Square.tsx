@@ -1,18 +1,23 @@
-import { MouseEvent, Ref } from 'react';
+import { MouseEvent } from 'react';
 import '../styles/Square.scss';
+import classNames from 'classnames';
 
 const Square = (props: SquareProps) => {
-  const { value, onValueChange } = props;
+  const { square, selectSquare } = props;
   
   const handleSquareClick = (event: MouseEvent<HTMLDivElement>) => {
-    // event.currentTarget.classList.toggle('selected');
+    if (square.changeable) {
+      selectSquare({row: square.row, col: square.col});
+    } else {
+      selectSquare(null);
+    }
   };
 
-  const squareClasses: string = (value === 0) ? 'square zero' : 'square';
+  const squareClasses: string = classNames('square', { changeable: square.changeable, zero: (square.value === 0) });
 
   return (
     <div  onClick={handleSquareClick} className={squareClasses}>         
-      {value}
+      {square.value}
     </div>
     
   );
@@ -21,6 +26,6 @@ const Square = (props: SquareProps) => {
 export default Square;
 
 export interface SquareProps {
-  value: number;
-  onValueChange: Function;
+  square: {col: number, row: number, value: number, changeable: boolean};
+  selectSquare: Function;
 };

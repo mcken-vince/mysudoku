@@ -1,23 +1,22 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, nonEmptySquares, isEqualGrid } from './logic/Game';
-import { gridType } from './logic/Main';
+import { generateBoard, isEqualGrid, makeCopyOfGrid, GridType } from './logic/Game';
 import { useState } from 'react';
 import NumberSelection from './components/NumberSelection';
 
 function App() {
-  const [grid, setGrid] = useState<gridType | null>(null);
-  const [initialGrid, setInitialGrid] = useState<{row: number, col: number}[] | null>(null);
-  const [solutionGrid, setSolutionGrid] = useState<gridType | null>(null);
+  const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
+  // const [initialGrid, setInitialGrid] = useState<GridType | null>(null);
+  const [solutionGrid, setSolutionGrid] = useState<GridType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
   const [selectedSquare, setSelectedSquare] = useState<{row: number ,col: number, value: number, changeable: boolean} | null>(null);
 
   const handleValueChange = (row: number, col: number, value: number) => {
-    setGrid(prev => {
-      const updatedGrid: gridType | null = prev ? [[...prev[0]], [...prev[1]], [...prev[2]], [...prev[3]], [...prev[4]], [...prev[5]], [...prev[6]], [...prev[7]], [...prev[8]] ] : null;
-      updatedGrid && (updatedGrid[row][col] = value);
+    setActiveGrid(prev => {
+      const updatedGrid: GridType | null = prev ? [[...prev[0]], [...prev[1]], [...prev[2]], [...prev[3]], [...prev[4]], [...prev[5]], [...prev[6]], [...prev[7]], [...prev[8]] ] : null;
+      updatedGrid && (updatedGrid[row][col].value = value);
       return updatedGrid;
     });
   };
@@ -26,27 +25,26 @@ function App() {
     setComplete(false);
     setLoading(true);
     let [newGrid, solvedGrid] = await generateBoard();
-    setGrid(newGrid);
+    setActiveGrid(newGrid);
     setSolutionGrid(solvedGrid);
-    setInitialGrid(nonEmptySquares(newGrid));
+    // const gridAtStart = makeCopyOfGrid(newGrid);
+    // setInitialGrid(gridAtStart);
     setLoading(false);
   };
 
   const clickValidate = () => {
-
-    if (grid && solutionGrid && isEqualGrid(grid, solutionGrid)) {
+    if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
       setComplete(true);
     }
   };
 
   const clickNumber = (value: number | null) => {
-    if (value) {
-      // if selectedSquare
-        // selectedSquare = value
-    
-    } else {
-      // if selectedSquare
-        // selectedSquare = 0  
+    if (selectedSquare) {
+      if (value) {
+        handleValueChange(selectedSquare.row, selectedSquare.col, value);
+      } else {
+        handleValueChange(selectedSquare.row, selectedSquare.col, 0);
+      }
     }
   };
 
@@ -61,7 +59,7 @@ function App() {
           </>
         }
       </div>
-        <RegularBoard grid={grid} onValueChange={handleValueChange}/>
+        <RegularBoard grid={activeGrid} selectSquare={setSelectedSquare}/>
         <NumberSelection handleClick={clickNumber}/>
     </div>
   );
