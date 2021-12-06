@@ -4,9 +4,16 @@ import Region from './Region';
 
 
 const RegularBoard = (props: RegularBoardProps) => {
-  const { grid, selectSquare } = props;
+  const { grid, selectSquare, selectedSquare } = props;
   const regions = grid ? rowsToRegions(grid) : [[],[],[],[],[],[],[],[],[]];
-  const regionComponents = regions.map((region, idx) => <Region region={region} selectSquare={selectSquare} key={idx} />); 
+  const regionComponents = regions.map((region, idx) => (
+    <Region 
+      region={region} 
+      selectedSquare={selectedSquare} 
+      selectSquare={selectSquare} 
+      key={idx} 
+    />
+  )); 
 
   return (
     <div className='regular-board-container'>
@@ -20,4 +27,5 @@ export default RegularBoard;
 export interface RegularBoardProps {
   grid: GridType | null;
   selectSquare: Function;
+  selectedSquare: null | {row: number, col: number, value: number, changeable: boolean};
 };

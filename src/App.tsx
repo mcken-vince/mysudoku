@@ -101,7 +101,11 @@ function App() {
           </>
         }
       </div>
-        <RegularBoard grid={activeGrid} selectSquare={setSelectedSquare}/>
+        <RegularBoard 
+          grid={activeGrid}
+          selectedSquare={selectedSquare}
+          selectSquare={setSelectedSquare}
+        />
         <NumberSelection handleClick={clickNumber}/>
     </div>
   );

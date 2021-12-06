@@ -20,12 +20,13 @@
   &.conflict {
     color: red;
   }
-  &.zero {
-    color: white;
-  }
-
   &.selected {
-    color: orange;
-    background-color: lightblue;
+    background-color: #0d6dfd38;
+  }
+  // this needs to be below all other options so that zeros don't show
+  &.zero {
+    span.square-value {
+      visibility: hidden;
+    }
   }
 }

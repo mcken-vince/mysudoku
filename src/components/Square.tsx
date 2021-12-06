@@ -3,7 +3,7 @@ import '../styles/Square.scss';
 import classNames from 'classnames';
 
 const Square = (props: SquareProps) => {
-  const { square, selectSquare } = props;
+  const { square, selectSquare, selectedSquare } = props;
   
   const handleSquareClick = (event: MouseEvent<HTMLDivElement>) => {
     if (square.changeable) {
@@ -13,11 +13,12 @@ const Square = (props: SquareProps) => {
     }
   };
 
-  const squareClasses: string = classNames('square', { changeable: square.changeable, zero: (square.value === 0) });
-
+  const isSelectedSquare: boolean = selectedSquare ? ((selectedSquare.col === square.col) && (selectedSquare.row === square.row)) : false;
+  const squareClasses: string = classNames('square', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare });
+  
   return (
     <div  onClick={handleSquareClick} className={squareClasses}>         
-      {square.value}
+      <span className='square-value'>{square.value}</span>
     </div>
     
   );
@@ -27,5 +28,6 @@ export default Square;
 
 export interface SquareProps {
   square: {col: number, row: number, value: number, changeable: boolean};
+  selectedSquare: null | {row: number, col: number, value: number, changeable: boolean};
   selectSquare: Function;
 };

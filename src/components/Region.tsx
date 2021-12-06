@@ -2,9 +2,16 @@ import '../styles/Region.scss';
 import Square from "./Square";
 
 const Region = (props: RegionProps) => {
-  const { region, selectSquare } = props;
+  const { region, selectSquare, selectedSquare } = props;
 
-  const squares = region.map((square, idx) => <Square selectSquare={selectSquare} square={square} key={idx}/>);
+  const squares = region.map((square, idx) => (
+    <Square 
+      selectedSquare={selectedSquare}
+      selectSquare={selectSquare} 
+      square={square} 
+      key={idx}
+    />
+  ));
   return (
   <div className='region'>
     {squares}
@@ -17,4 +24,5 @@ export default Region;
 export interface RegionProps {
   region: any[];
   selectSquare: Function;
+  selectedSquare: null | {row: number, col: number, value: number, changeable: boolean};
 };
