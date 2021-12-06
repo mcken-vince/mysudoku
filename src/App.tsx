@@ -1,7 +1,7 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, isEqualGrid, makeCopyOfGrid, GridType } from './logic/Game';
+import { generateBoard, isEqualGrid, GridType } from './logic/Game';
 import { useState } from 'react';
 import NumberSelection from './components/NumberSelection';
 
