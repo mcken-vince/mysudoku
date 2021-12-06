@@ -34,12 +34,25 @@ function App() {
     setLoading(false);
   };
 
+  const clickRestart = () => {
+    const resetBoard = [];
+    if (activeGrid) {
+      for (let row = 0; row < 9; row++) {
+        resetBoard.push(activeGrid[row].map(square => {
+          return { ...square, value: square.changeable ? 0 : square.value }
+        }));
+      };
+    }
+    setActiveGrid(resetBoard);
+  };
+
   const checkSolution = () => {
     if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
       setMessage(null);
       setComplete(true);
     } else {
-      setMessage('Not quite there, keep trying!')
+      setMessage('Not quite there, keep trying!');
+      setTimeout(() => setMessage(null), 5000)
     }
   };
 
@@ -59,7 +72,7 @@ function App() {
         {loading ? <h1>Workin' it...</h1> : 
           <>
             <Button onClick={clickNewGame}>New Game</Button>
-            <Button>Restart</Button>
+            <Button onClick={clickRestart}>Restart</Button>
             { complete ?  <h1>You win!</h1> : <Button onClick={checkSolution}>Check Solution</Button> }
             { message && <h3>{message}</h3>}
           </>
