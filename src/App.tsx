@@ -2,7 +2,7 @@ import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
 import { generateBoard, isEqualGrid, GridType } from './logic/Game';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
 
@@ -13,15 +13,25 @@ function App() {
   const [complete, setComplete] = useState<boolean>(false);
   const [selectedSquare, setSelectedSquare] = useState<{row: number ,col: number, value: number, changeable: boolean} | null>(null);
   const [message, setMessage] = useState<string | null>(null);
-  const [time, setTime] = useState<number>(0);
+  const [timer, setTimer] = useState<number>(0);
+  const [pause, setPause] = useState<boolean>(false);
+  const countRef = useRef<any>(null);
 
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(prev => prev + 1);
+  const startTimer = () => {
+    // Clear any existing intervals before starting a new one
+    clearInterval(countRef.current);
+    setPause(false);
+    countRef.current = setInterval(() => {
+      setTimer((time) => time + 1);
     }, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  };
+
+  const pauseTimer = () => {
+    if (!pause) {
+      setPause(true);
+      clearInterval(countRef.current);
+    }
+  };
 
   const handleValueChange = (row: number, col: number, value: number) => {
     setActiveGrid(prev => {
@@ -39,7 +49,8 @@ function App() {
     setActiveGrid(newGrid);
     setSolutionGrid(solvedGrid);
     setLoading(false);
-    setTime(0);
+    setTimer(0);
+    startTimer();
   };
 
   const clickRestart = () => {
@@ -52,7 +63,8 @@ function App() {
       };
     }
     setActiveGrid(resetBoard);
-    setTime(0);
+    setTimer(0);
+    startTimer();
   };
 
   const checkSolution = () => {
@@ -84,7 +96,7 @@ function App() {
             <Button onClick={clickRestart}>Restart</Button>
             { complete ?  <h1>You win!</h1> : <Button onClick={checkSolution}>Check Solution</Button> }
             { message && <h3>{message}</h3>}
-            <Timer time={time} />
+            <Timer time={timer} pause={pauseTimer} start={startTimer} timerPaused={pause}/>
           </>
         }
       </div>

@@ -1,5 +1,16 @@
+import Button from 'react-bootstrap/Button';
+
 const Timer = (props: TimerProps) => {
-  const { time } = props;
+  const { time, pause, start, timerPaused } = props;
+
+  const handlePause = () => {
+    console.log('timerPaused:', timerPaused);
+    if (timerPaused) {
+      start();
+    } else {
+      pause();
+    }
+  };
 
   const seconds = time % 60;
   const minutes = Math.floor(time / 60);
@@ -11,6 +22,7 @@ const Timer = (props: TimerProps) => {
         {minutes < 10 ? `0${minutes}` : minutes}:
         {seconds < 10 ? `0${seconds}` : seconds}
       </span>
+      <Button onClick={handlePause}>{timerPaused ? 'Resume' : 'Pause'}</Button>
     </div>
   );
 };
@@ -19,4 +31,7 @@ export default Timer;
 
 export interface TimerProps {
   time: number;
+  pause: Function;
+  timerPaused: boolean;
+  start: Function;
 };
