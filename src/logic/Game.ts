@@ -76,8 +76,7 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
       solutionGridWithCoords[r].push({row: r, col: c, value: solutionGrid[r][c]})
     };
   };
-  // console.log('try count: ', count);
-  console.log('newGrid: ', newGrid);
+  console.log('try count: ', count);
   return [newGridWithCoords, solutionGridWithCoords];
 };
 

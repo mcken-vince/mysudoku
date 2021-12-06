@@ -7,7 +7,6 @@ import NumberSelection from './components/NumberSelection';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
-  // const [initialGrid, setInitialGrid] = useState<GridType | null>(null);
   const [solutionGrid, setSolutionGrid] = useState<GridType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
@@ -29,8 +28,6 @@ function App() {
     let [newGrid, solvedGrid] = await generateBoard();
     setActiveGrid(newGrid);
     setSolutionGrid(solvedGrid);
-    // const gridAtStart = makeCopyOfGrid(newGrid);
-    // setInitialGrid(gridAtStart);
     setLoading(false);
   };
 
