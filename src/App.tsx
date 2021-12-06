@@ -2,7 +2,7 @@ import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
 import { generateBoard, nonEmptySquares, isEqualGrid } from './logic/Game';
-import {  checkGrid, gridType } from './logic/Main';
+import { gridType } from './logic/Main';
 import { useState } from 'react';
 import NumberSelection from './components/NumberSelection';
 
