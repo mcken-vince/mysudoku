@@ -5,13 +5,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-
-
-  &.unchangeable {
-    font-weight: bold;
+  font-weight: bold;
+  &:hover {
+    cursor: not-allowed;
   }
+
   &.changeable {
-    color: green;
+    color: blue;
+    
+    &:hover {
+      cursor: pointer;
+    }
   }
   &.conflict {
     color: red;
@@ -21,6 +25,7 @@
   }
 
   &.selected {
+    color: orange;
     background-color: lightblue;
   }
 }
