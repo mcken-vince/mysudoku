@@ -2,8 +2,9 @@ import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
 import { generateBoard, isEqualGrid, GridType } from './logic/Game';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import NumberSelection from './components/NumberSelection';
+import Timer from './components/Timer';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -12,6 +13,15 @@ function App() {
   const [complete, setComplete] = useState<boolean>(false);
   const [selectedSquare, setSelectedSquare] = useState<{row: number ,col: number, value: number, changeable: boolean} | null>(null);
   const [message, setMessage] = useState<string | null>(null);
+  const [time, setTime] = useState<number>(0);
+
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setTime(prev => prev + 1);
+    }, 1000);
+    return () => clearInterval(timer);
+  }, []);
 
   const handleValueChange = (row: number, col: number, value: number) => {
     setActiveGrid(prev => {
@@ -29,6 +39,7 @@ function App() {
     setActiveGrid(newGrid);
     setSolutionGrid(solvedGrid);
     setLoading(false);
+    setTime(0);
   };
 
   const clickRestart = () => {
@@ -41,6 +52,7 @@ function App() {
       };
     }
     setActiveGrid(resetBoard);
+    setTime(0);
   };
 
   const checkSolution = () => {
@@ -72,6 +84,7 @@ function App() {
             <Button onClick={clickRestart}>Restart</Button>
             { complete ?  <h1>You win!</h1> : <Button onClick={checkSolution}>Check Solution</Button> }
             { message && <h3>{message}</h3>}
+            <Timer time={time} />
           </>
         }
       </div>

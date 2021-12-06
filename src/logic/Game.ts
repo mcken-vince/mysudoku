@@ -39,11 +39,11 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
   let squaresToRemove: number;
 
   if (difficulty === 'easy') {
-    squaresToRemove = 17;
-  } else if (difficulty === 'difficult') {
-    squaresToRemove = 35;
-  } else {
     squaresToRemove = 25;
+  } else if (difficulty === 'difficult') {
+    squaresToRemove = 45;
+  } else {
+    squaresToRemove = 35;
   }
 
   while (emptySquares(newGrid).length < squaresToRemove) {
@@ -65,6 +65,7 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
     };
   };
   console.log('try count: ', count);
+  console.log('squares removed: ', emptySquares(newGrid).length)
   return [newGridWithCoords, solutionGridWithCoords];
 };
 
