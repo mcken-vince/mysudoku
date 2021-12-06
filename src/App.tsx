@@ -32,7 +32,7 @@ function App() {
     setLoading(false);
   };
 
-  const clickValidate = () => {
+  const checkSolution = () => {
     if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
       setComplete(true);
     }
@@ -55,7 +55,7 @@ function App() {
           <>
             <Button onClick={clickNewGame}>New Game</Button>
             <Button>Restart</Button>
-            { complete ?  <h1>You win!</h1> : <Button onClick={clickValidate}>Check Solution</Button> }
+            { complete ?  <h1>You win!</h1> : <Button onClick={checkSolution}>Check Solution</Button> }
           </>
         }
       </div>

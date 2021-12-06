@@ -82,8 +82,8 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
 };
 
 export const isEqualGrid = (grid1: GridType, grid2: GridType): boolean => {
-  for (let r = 0; r < 0; r++) {
-    for (let c = 0; c < 0; c++) {
+  for (let r = 0; r < 9; r++) {
+    for (let c = 0; c < 9; c++) {
       if (grid1[r][c].value !== grid2[r][c].value) return false;
     };
   };
