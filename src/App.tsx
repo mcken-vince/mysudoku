@@ -42,9 +42,9 @@ function App() {
   };
 
   const clickNewGame = async () => {
+    setLoading(true);
     setMessage(null);
     setComplete(false);
-    setLoading(true);
     let [newGrid, solvedGrid] = await generateBoard();
     setActiveGrid(newGrid);
     setSolutionGrid(solvedGrid);
@@ -101,12 +101,16 @@ function App() {
           </>
         }
       </div>
+        {pause ? <h1>Game is paused.</h1>:
+        <>
         <RegularBoard 
-          grid={activeGrid}
-          selectedSquare={selectedSquare}
-          selectSquare={setSelectedSquare}
+        grid={activeGrid}
+        selectedSquare={selectedSquare}
+        selectSquare={setSelectedSquare}
         />
         <NumberSelection handleClick={clickNumber}/>
+      </>
+      }
     </div>
   );
 };
