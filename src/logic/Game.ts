@@ -30,18 +30,6 @@ const emptySquares = (grid: NumberGridType): {row: number, col: number}[] => {
   return emptySquares;
 };
 
-export const nonEmptySquares = (grid: NumberGridType): {row: number, col: number}[] => {
-  let nonEmptySquares = [];
-  for (let row = 0; row < 9; row++) {
-    for (let col = 0; col < 9; col++) {
-      if (grid[row][col] !== 0) {
-        nonEmptySquares.push({row, col});
-      }
-    };
-  };
-  return nonEmptySquares;
-};
-
 export const generateBoard = async (difficulty: DifficultyType = 'default'): Promise<[GridType, GridType]>  => {
   let blankGrid: NumberGridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
   let newGrid: NumberGridType = blankGrid;
