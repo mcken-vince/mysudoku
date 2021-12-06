@@ -2,7 +2,7 @@ import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
 import { generateBoard, isEqualGrid, GridType } from './logic/Game';
-import { useEffect, useState, useRef } from 'react';
+import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
 
@@ -69,6 +69,7 @@ function App() {
 
   const checkSolution = () => {
     if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
+      pauseTimer();
       setMessage(null);
       setComplete(true);
     } else {
