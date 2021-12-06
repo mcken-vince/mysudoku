@@ -12,6 +12,7 @@ function App() {
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
   const [selectedSquare, setSelectedSquare] = useState<{row: number ,col: number, value: number, changeable: boolean} | null>(null);
+  const [message, setMessage] = useState<string | null>(null);
 
   const handleValueChange = (row: number, col: number, value: number) => {
     setActiveGrid(prev => {
@@ -22,6 +23,7 @@ function App() {
   };
 
   const clickNewGame = async () => {
+    setMessage(null);
     setComplete(false);
     setLoading(true);
     let [newGrid, solvedGrid] = await generateBoard();
@@ -34,7 +36,10 @@ function App() {
 
   const checkSolution = () => {
     if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
+      setMessage(null);
       setComplete(true);
+    } else {
+      setMessage('Not quite there, keep trying!')
     }
   };
 
@@ -56,6 +61,7 @@ function App() {
             <Button onClick={clickNewGame}>New Game</Button>
             <Button>Restart</Button>
             { complete ?  <h1>You win!</h1> : <Button onClick={checkSolution}>Check Solution</Button> }
+            { message && <h3>{message}</h3>}
           </>
         }
       </div>
