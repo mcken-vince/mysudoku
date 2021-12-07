@@ -39,7 +39,7 @@ function App() {
       updatedGrid && (updatedGrid[row][col].value = value);
       return updatedGrid;
     });
-    setTimeout(() => checkSolution(), 50);
+    setTimeout(() => checkSolution(), 1);
   };
 
   const clickNewGame = async () => {

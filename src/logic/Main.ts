@@ -133,7 +133,7 @@ export const fillGrid = (grid: NumberGridType) => {
 };
 
 export const removeNumbers = (grid: NumberGridType, removeCount: number) => {
-  let attempts = 2;
+  let attempts = removeCount;
   counter = 1;
   while (attempts > 0) {
     let row = randomIndex(8);

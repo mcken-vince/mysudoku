@@ -45,10 +45,10 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
   } else {
     squaresToRemove = 35;
   }
-
-  while (emptySquares(newGrid).length < squaresToRemove) {
+  // change 1 back to squaresToRemove
+  while (emptySquares(newGrid).length < 1) {
     try {
-      removeNumbers(newGrid, 17);
+      removeNumbers(newGrid, 1);
     } catch {
       count++
     }

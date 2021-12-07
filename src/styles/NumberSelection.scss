@@ -2,7 +2,7 @@
   border: 2px #0d6efd solid;
   border-radius: 2px;
   display: grid;
-  grid-template-columns: 33.3% 33.3% 33.3%;
+  grid-template-columns: 1fr 1fr 1fr;
   
   .clickable {
     border: 1px black solid;
