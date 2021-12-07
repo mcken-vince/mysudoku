@@ -95,8 +95,8 @@ function App() {
           <>
             <Button onClick={clickNewGame}>New Game</Button>
             <Button onClick={clickRestart}>Restart</Button>
-            { complete ?  <h1>You win!</h1> : <Button onClick={checkSolution}>Check Solution</Button> }
-            { message && <h3>{message}</h3>}
+            { complete && <h1>{`Puzzle completed in ${timer} seconds!`}</h1> }
+            { message && <h3>{message}</h3> }
             <Timer time={timer} pause={pauseTimer} start={startTimer} timerPaused={pause}/>
           </>
         }

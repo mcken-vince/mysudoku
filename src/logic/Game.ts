@@ -50,7 +50,7 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
     try {
       removeNumbers(newGrid, 1);
     } catch {
-      count++
+      count++;
     }
   };
   // Add coordinates to 
