@@ -1,0 +1,43 @@
+.select-difficulty-container {
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+
+  button {
+    width: 10em;
+    &:hover {
+      box-shadow: blue 0 0 10px 10px;
+    }
+
+    &.easy-button {
+      background-color: green;
+      border-color: green;
+      &:hover {
+        box-shadow: lightgreen 0 0 10px 10px;
+      }
+    }
+    &.medium-button {
+      background-color: orange;
+      border-color: orange;
+      &:hover {
+        box-shadow: lightcoral 0 0 10px 10px;
+      }
+    }
+    &.difficult-button {
+      background-color: red;
+      border-color: red;
+      &:hover {
+        box-shadow: orangered 0 0 10px 10px;
+      }
+    }
+    &.random-button {
+      background-color: purple;
+      border-color: purple;
+      &:hover {
+        box-shadow: darkorchid 0 0 10px 10px;
+      }
+    }
+  }
+}
