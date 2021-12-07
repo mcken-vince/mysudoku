@@ -39,6 +39,7 @@ function App() {
       updatedGrid && (updatedGrid[row][col].value = value);
       return updatedGrid;
     });
+    setTimeout(() => checkSolution(), 50);
   };
 
   const clickNewGame = async () => {
@@ -73,8 +74,7 @@ function App() {
       setMessage(null);
       setComplete(true);
     } else {
-      setMessage('Not quite there, keep trying!');
-      setTimeout(() => setMessage(null), 5000)
+      setTimeout(() => setMessage(null), 3000)
     }
   };
 
@@ -101,7 +101,7 @@ function App() {
           </>
         }
       </div>
-        {pause ? <h1>Game is paused.</h1>:
+        {pause && !complete ? <h1>Game is paused.</h1>:
         <>
         <RegularBoard 
         grid={activeGrid}
