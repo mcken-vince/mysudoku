@@ -33,6 +33,13 @@ function App() {
     }
   };
 
+  /**
+   * Updates the activeGrid state, takes a square's coordinates and updates the value to the given value.
+   * Then calls checkSolution to see if puzzle has been solved.
+   * @param row 
+   * @param col 
+   * @param value 
+   */
   const handleValueChange = (row: number, col: number, value: number) => {
     setActiveGrid(prev => {
       const updatedGrid: GridType | null = prev ? [[...prev[0]], [...prev[1]], [...prev[2]], [...prev[3]], [...prev[4]], [...prev[5]], [...prev[6]], [...prev[7]], [...prev[8]] ] : null;
@@ -42,6 +49,9 @@ function App() {
     setTimeout(() => checkSolution(), 1);
   };
 
+  /**
+   * Handles click of New Game button
+   */
   const clickNewGame = async () => {
     setLoading(true);
     setMessage(null);
@@ -53,7 +63,10 @@ function App() {
     setTimer(0);
     startTimer();
   };
-
+  
+  /**
+   * Handles click of Restart button
+   */
   const clickRestart = () => {
     const resetBoard = [];
     if (activeGrid) {
@@ -68,6 +81,9 @@ function App() {
     startTimer();
   };
 
+  /**
+   * Checks to see if grid has been solved, and set complete state to true if it has.
+   */
   const checkSolution = () => {
     if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
       pauseTimer();
@@ -78,6 +94,10 @@ function App() {
     }
   };
 
+  /**
+   * Passes the clicked value from NumberSelection to the selectedSquare if there is one.
+   * @param value 
+   */
   const clickNumber = (value: number | null) => {
     if (selectedSquare) {
       if (value) {
@@ -95,23 +115,27 @@ function App() {
           <>
             <Button onClick={clickNewGame}>New Game</Button>
             <Button onClick={clickRestart}>Restart</Button>
-            { complete && <h1>{`Puzzle completed in ${timer} seconds!`}</h1> }
-            { message && <h3>{message}</h3> }
+            { complete && 
+              <h1>{`Puzzle completed in ${timer} seconds!`}</h1>
+            }
+            { message && 
+              <h3>{message}</h3>
+            }
             <Timer time={timer} pause={pauseTimer} start={startTimer} timerPaused={pause}/>
           </>
         }
       </div>
         {pause && !complete ? <h1>Game is paused.</h1>:
-        <>
-        <RegularBoard 
-        grid={activeGrid}
-        selectedSquare={selectedSquare}
-        selectSquare={setSelectedSquare}
-        />
-        <NumberSelection handleClick={clickNumber}/>
-      </>
-      }
-    </div>
+          <>
+            <RegularBoard 
+              grid={activeGrid}
+              selectedSquare={selectedSquare}
+              selectSquare={setSelectedSquare}
+            />
+            <NumberSelection handleClick={clickNumber}/>
+          </>
+        }
+      </div>
   );
 };
 
