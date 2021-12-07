@@ -1,10 +1,11 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, isEqualGrid, GridType } from './logic/Game';
+import { generateBoard, isEqualGrid, GridType, DifficultyType } from './logic/Game';
 import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
+import SelectDifficulty from './components/SelectDifficulty';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -15,6 +16,7 @@ function App() {
   const [message, setMessage] = useState<string | null>(null);
   const [timer, setTimer] = useState<number>(0);
   const [pause, setPause] = useState<boolean>(false);
+  const [selectDifficulty, setSelectDifficulty] = useState<boolean>(false);
   const countRef = useRef<any>(null);
 
   const startTimer = () => {
@@ -52,11 +54,29 @@ function App() {
   /**
    * Handles click of New Game button
    */
-  const clickNewGame = async () => {
+  const clickNewGame = () => {
+    setSelectDifficulty(prev => !prev);
+  };
+
+  const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
+    setSelectDifficulty(false);
     setLoading(true);
     setMessage(null);
     setComplete(false);
-    let [newGrid, solvedGrid] = await generateBoard();
+    let setDifficulty: DifficultyType;
+    if (difficulty === 'random') {
+      const randomNumber: number = Math.floor(Math.random() * 3);
+      if (randomNumber === 0) {
+        setDifficulty = 'easy';
+      } else if (randomNumber === 1) {
+        setDifficulty = 'medium'
+      } else {
+        setDifficulty = 'difficult';
+      }
+    } else {
+      setDifficulty = difficulty;
+    }
+    let [newGrid, solvedGrid] = await generateBoard(setDifficulty);
     setActiveGrid(newGrid);
     setSolutionGrid(solvedGrid);
     setLoading(false);
@@ -122,21 +142,33 @@ function App() {
             { message && 
               <h3>{message}</h3>
             }
-            <Timer time={timer} pause={pauseTimer} start={startTimer} timerPaused={pause} disabled={complete} />
+            {!selectDifficulty && 
+              <Timer 
+                time={timer} 
+                pause={pauseTimer} 
+                start={startTimer} 
+                timerPaused={pause} 
+                disabled={complete} 
+              />
+            }
           </>
         }
       </div>
-        {pause && !complete ? <h1>Game is paused.</h1>:
+        {selectDifficulty ? <SelectDifficulty onSelect={startNewGame} /> :
+        <div>{pause && !complete ? <h1>Game is paused.</h1>:
           <>
             <RegularBoard 
               grid={activeGrid}
               selectedSquare={selectedSquare}
               selectSquare={setSelectedSquare}
-            />
-            <NumberSelection handleClick={clickNumber}/>
+              />
+            {!complete && 
+              <NumberSelection handleClick={clickNumber}/>
+            }
           </>
-        }
-      </div>
+        }</div>
+      }
+        </div>
   );
 };
 

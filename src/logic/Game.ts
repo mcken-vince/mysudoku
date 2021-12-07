@@ -37,16 +37,16 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
   const solutionGrid = [[...newGrid[0]],[...newGrid[1]],[...newGrid[2]],[...newGrid[3]],[...newGrid[4]],[...newGrid[5]],[...newGrid[6]],[...newGrid[7]],[...newGrid[8]]];
   let count = 1;
   let squaresToRemove: number;
-
+  console.log('difficulty: ', difficulty)
   if (difficulty === 'easy') {
-    squaresToRemove = 25;
+    squaresToRemove = 20;
   } else if (difficulty === 'difficult') {
     squaresToRemove = 45;
   } else {
-    squaresToRemove = 35;
+    squaresToRemove = 30;
   }
   // change 1 back to squaresToRemove
-  while (emptySquares(newGrid).length < 1) {
+  while (emptySquares(newGrid).length < squaresToRemove) {
     try {
       removeNumbers(newGrid, 1);
     } catch {
