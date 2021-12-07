@@ -155,7 +155,7 @@ function App() {
         }
       </div>
         {selectDifficulty ? <SelectDifficulty onSelect={startNewGame} /> :
-        <div>{pause && !complete ? <h1>Game is paused.</h1>:
+        <div className='game-container'>{pause && !complete ? <h1>Game is paused.</h1>:
           <>
             <RegularBoard 
               grid={activeGrid}
