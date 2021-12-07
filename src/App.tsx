@@ -68,6 +68,7 @@ function App() {
    * Handles click of Restart button
    */
   const clickRestart = () => {
+    setComplete(false);
     const resetBoard = [];
     if (activeGrid) {
       for (let row = 0; row < 9; row++) {
@@ -121,7 +122,7 @@ function App() {
             { message && 
               <h3>{message}</h3>
             }
-            <Timer time={timer} pause={pauseTimer} start={startTimer} timerPaused={pause}/>
+            <Timer time={timer} pause={pauseTimer} start={startTimer} timerPaused={pause} disabled={complete} />
           </>
         }
       </div>
