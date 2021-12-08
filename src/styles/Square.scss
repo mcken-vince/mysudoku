@@ -1,3 +1,9 @@
+$highlight-color: yellow;
+$changeable-text-color: blue;
+$selected-bg-color: #0d6dfd38;
+$samerowcolsq-bg-color: rgb(238, 238, 238);
+$conflict-text-color: red;
+
 .square {
   margin: 0;
   padding: 0;
@@ -12,16 +18,13 @@
   }
 
   &.changeable {
-    color: blue;
-  }
-  &.conflict {
-    color: red;
+    color: $changeable-text-color;
   }
   &.highlight {
-    background-color: yellow;
+    background-color: $highlight-color;
   }
   &.selected {
-    background-color: #0d6dfd38;
+    background-color: $selected-bg-color;
   }
   // this needs to be below all other options so that zeros don't show
   &.zero {
@@ -38,7 +41,13 @@
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Opera and Firefox */
   }
-  &.sameRowOrCol {
-    background-color: rgb(238, 238, 238);
+  &.sameRowColSquare {
+    background-color: $samerowcolsq-bg-color;
+  }
+  &.sameSquare {
+    background-color: $samerowcolsq-bg-color;
+  }
+  &.sameRowColSquare.highlight {
+    color: $conflict-text-color;
   }
 }

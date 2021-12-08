@@ -1,7 +1,7 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, isEqualGrid, GridType, DifficultyType } from './logic/Game';
+import { generateBoard, isEqualGrid, GridType, DifficultyType, squareType, makeCopyOfGrid } from './logic/Game';
 import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
@@ -13,7 +13,7 @@ function App() {
   const [solutionGrid, setSolutionGrid] = useState<GridType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
-  const [selectedSquare, setSelectedSquare] = useState<{row: number ,col: number, value: number, changeable: boolean} | null>(null);
+  const [selectedSquare, setSelectedSquare] = useState<squareType | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [timer, setTimer] = useState<number>(0);
   const [pause, setPause] = useState<boolean>(false);
@@ -127,7 +127,7 @@ function App() {
       }
     }
   };
-
+  
   return (
     <div className="App">
       <div className='buttons'>

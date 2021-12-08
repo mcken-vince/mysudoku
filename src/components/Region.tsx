@@ -1,3 +1,4 @@
+import { squareType } from '../logic/Game';
 import '../styles/Region.scss';
 import Square from "./Square";
 
@@ -24,5 +25,5 @@ export default Region;
 export interface RegionProps {
   region: any[];
   selectSquare: Function;
-  selectedSquare: null | {row: number, col: number, value: number, changeable: boolean};
+  selectedSquare: null | squareType;
 };

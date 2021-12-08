@@ -1,4 +1,4 @@
-import { fillGrid, NumberGridType, removeNumbers } from "./Main";
+import { fillGrid, NumberGridType, removeNumbers, whichBlock } from "./Main";
 
 export const shuffleRow = (array: any[]): any[] => {
   let currentIndex: number = array.length;
@@ -60,8 +60,9 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
     newGridWithCoords.push([]);
     solutionGridWithCoords.push([]);
     for (let c = 0; c < 9; c++) {
-      newGridWithCoords[r].push({row: r, col: c, value: newGrid[r][c], changeable: (newGrid[r][c] === 0)});
-      solutionGridWithCoords[r].push({row: r, col: c, value: solutionGrid[r][c]})
+      const square = whichBlock(r, c).square;
+      newGridWithCoords[r].push({row: r, col: c, value: newGrid[r][c], changeable: (newGrid[r][c] === 0), square});
+      solutionGridWithCoords[r].push({row: r, col: c, value: solutionGrid[r][c], square})
     };
   };
   console.log('try count: ', count);
@@ -109,10 +110,9 @@ export const makeCopyOfGrid = (grid: GridType): GridType => {
 };
 
 export type DifficultyType = 'default' | 'easy' | 'medium' | 'difficult';
-export type boardType = rowType[];
-// export type boardType = [ rowType, rowType, rowType, rowType, rowType, rowType, rowType, rowType, rowType ];
-export type rowType = squareType[];
-export type squareType = {num: num, conflict: boolean};
+
+export type squareType = {row: number, col: number, value: number, changeable?: boolean, square: number};
 export type num = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0;
-export type conflictType = {column: number, row: number};
-export type GridType = {row: number, col: number, value: number, changeable?: boolean}[][];
+// export type conflictType = {column: number, row: number};
+
+export type GridType = squareType[][];
