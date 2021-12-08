@@ -1,7 +1,7 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, isEqualGrid, GridType, DifficultyType, squareType, makeCopyOfGrid } from './logic/Game';
+import { generateBoard, isEqualGrid, GridType, DifficultyType, squareType } from './logic/Game';
 import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
@@ -17,7 +17,7 @@ function App() {
   const [message, setMessage] = useState<string | null>(null);
   const [timer, setTimer] = useState<number>(0);
   const [pause, setPause] = useState<boolean>(false);
-  const [selectDifficulty, setSelectDifficulty] = useState<boolean>(false);
+  const [selectDifficulty, setSelectDifficulty] = useState<boolean>(true);
   const countRef = useRef<any>(null);
 
   const startTimer = () => {
