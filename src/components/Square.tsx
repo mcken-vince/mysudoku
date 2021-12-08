@@ -6,15 +6,19 @@ const Square = (props: SquareProps) => {
   const { square, selectSquare, selectedSquare } = props;
   
   const handleSquareClick = (event: MouseEvent<HTMLDivElement>) => {
-    selectSquare({row: square.row, col: square.col, value: square.value});
+    if (selectedSquare && (selectedSquare.row === square.row && selectedSquare.col === square.col)) {
+      selectSquare(null);
+    } else {
+      selectSquare(square);
+    }
   };
 
   const isSelectedSquare: boolean = selectedSquare ? ((selectedSquare.col === square.col) && (selectedSquare.row === square.row)) : false;
-  const isSameValueAsSelectedSquare: boolean = selectedSquare ? (selectedSquare.value === square.value) : false;
-  const squareClasses: string = classNames('square', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare, highlight: isSameValueAsSelectedSquare });
+  const isSameValueAsSelectedSquare: boolean = (selectedSquare && square.value !== 0) ? (selectedSquare.value === square.value) : false;
+  const squareClasses: string = classNames('square', 'noselect', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare, highlight: isSameValueAsSelectedSquare });
   
   return (
-    <div  onClick={handleSquareClick} className={squareClasses}>         
+    <div onClick={handleSquareClick} className={squareClasses}>         
       <span className='square-value'>{square.value}</span>
     </div>
   );

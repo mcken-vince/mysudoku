@@ -120,7 +120,7 @@ function App() {
    * @param value 
    */
   const clickNumber = (value: number | null) => {
-    if (selectedSquare) {
+    if (selectedSquare && selectedSquare.changeable) {
       if (value) {
         handleValueChange(selectedSquare.row, selectedSquare.col, value);
       } else {
