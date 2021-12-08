@@ -18,7 +18,7 @@
     color: red;
   }
   &.highlight {
-    background-color: yellow
+    background-color: yellow;
   }
   &.selected {
     background-color: #0d6dfd38;
@@ -37,5 +37,8 @@
           -ms-user-select: none; /* Internet Explorer/Edge */
               user-select: none; /* Non-prefixed version, currently
                                     supported by Chrome, Opera and Firefox */
+  }
+  &.sameRowOrCol {
+    background-color: rgb(238, 238, 238);
   }
 }

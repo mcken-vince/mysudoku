@@ -1,4 +1,4 @@
-import { shuffleRow, randomIndex } from "./Game";
+import { shuffleRow, randomIndex, GridType } from "./Game";
 
 export const blankGrid: NumberGridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
 
@@ -10,7 +10,7 @@ const numberList = [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ];
  * @param grid 
  * @returns isFilled
  */
-export const checkGrid = (grid: NumberGridType): boolean => {
+export const checkNumberGrid = (grid: NumberGridType): boolean => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (grid[row][col] === 0) {
@@ -21,6 +21,17 @@ export const checkGrid = (grid: NumberGridType): boolean => {
   };
   // console.log('checkGrid: true');
   return true;
+};
+
+export const checkGrid = (grid: GridType): boolean => {
+  for (let row = 0; row < 9; row++) {
+    for (let col = 0; col < 9; col++) {
+      if (grid[row][col].value === 0) {
+        return false;
+      }
+    };
+  };
+  return true; 
 };
 
 const whichBlock = (grid: NumberGridType, row: number, col: number) => {
@@ -70,7 +81,7 @@ export const solveGrid = (grid: NumberGridType) => {
             if (!thisBlock.includes(value)) {
               grid[row][col] = value;
             }
-            if (checkGrid(grid)) {
+            if (checkNumberGrid(grid)) {
               counter++;
               break;
             } else {
@@ -111,7 +122,7 @@ export const fillGrid = (grid: NumberGridType) => {
             if (!thisBlock.includes(value)) {
               thisGrid[row][col] = value;
               // If grid is complete return true
-              if (checkGrid(thisGrid)) {
+              if (checkNumberGrid(thisGrid)) {
                 console.log('grid is complete!')
                 return true;
               } else {

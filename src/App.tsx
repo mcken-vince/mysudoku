@@ -6,6 +6,7 @@ import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
 import SelectDifficulty from './components/SelectDifficulty';
+import { checkGrid } from './logic/Main';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -106,12 +107,10 @@ function App() {
    * Checks to see if grid has been solved, and set complete state to true if it has.
    */
   const checkSolution = () => {
-    if (activeGrid && solutionGrid && isEqualGrid(activeGrid, solutionGrid)) {
+    if (activeGrid && solutionGrid && (isEqualGrid(activeGrid, solutionGrid) || checkGrid(activeGrid))) {
       pauseTimer();
       setMessage(null);
       setComplete(true);
-    } else {
-      setTimeout(() => setMessage(null), 3000)
     }
   };
 

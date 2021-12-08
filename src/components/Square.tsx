@@ -15,7 +15,8 @@ const Square = (props: SquareProps) => {
 
   const isSelectedSquare: boolean = selectedSquare ? ((selectedSquare.col === square.col) && (selectedSquare.row === square.row)) : false;
   const isSameValueAsSelectedSquare: boolean = (selectedSquare && square.value !== 0) ? (selectedSquare.value === square.value) : false;
-  const squareClasses: string = classNames('square', 'noselect', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare, highlight: isSameValueAsSelectedSquare });
+  const sameRowOrCol: boolean = (selectedSquare && !isSelectedSquare) ? (selectedSquare.row === square.row || selectedSquare.col === square.col) : false;
+  const squareClasses: string = classNames('square', 'noselect', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare, highlight: isSameValueAsSelectedSquare, sameRowOrCol });
   
   return (
     <div onClick={handleSquareClick} className={squareClasses}>         
