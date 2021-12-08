@@ -6,21 +6,17 @@ const Square = (props: SquareProps) => {
   const { square, selectSquare, selectedSquare } = props;
   
   const handleSquareClick = (event: MouseEvent<HTMLDivElement>) => {
-    if (square.changeable) {
-      selectSquare({row: square.row, col: square.col});
-    } else {
-      selectSquare(null);
-    }
+    selectSquare({row: square.row, col: square.col, value: square.value});
   };
 
   const isSelectedSquare: boolean = selectedSquare ? ((selectedSquare.col === square.col) && (selectedSquare.row === square.row)) : false;
-  const squareClasses: string = classNames('square', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare });
+  const isSameValueAsSelectedSquare: boolean = selectedSquare ? (selectedSquare.value === square.value) : false;
+  const squareClasses: string = classNames('square', { changeable: square.changeable, zero: (square.value === 0), selected: isSelectedSquare, highlight: isSameValueAsSelectedSquare });
   
   return (
     <div  onClick={handleSquareClick} className={squareClasses}>         
       <span className='square-value'>{square.value}</span>
     </div>
-    
   );
 };
 

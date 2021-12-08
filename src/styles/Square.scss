@@ -20,6 +20,9 @@
   &.conflict {
     color: red;
   }
+  &.highlight {
+    background-color: yellow
+  }
   &.selected {
     background-color: #0d6dfd38;
   }
