@@ -34,6 +34,33 @@ export const checkGrid = (grid: GridType): boolean => {
   return true; 
 };
 
+export const isSolved = (grid: GridType): boolean => {
+  const squares: number[][] = [[],[],[],[],[],[],[],[],[]];
+  for (let r = 0; r < 9; r++) {
+    const thisRow: number[] = [];
+    const thisCol: number[] = [];
+    for (let c = 0; c < 9; c++) {
+      if (grid[r][c].value === 0) return false;
+      if (thisRow.includes(grid[r][c].value)) {
+        return false;
+      } else {
+        thisRow.push(grid[r][c].value);
+      }
+      if (thisCol.includes(grid[r][c].value)) {
+        return false;
+      } else {
+        thisCol.push(grid[r][c].value);
+      }
+      if (squares[grid[r][c].square].includes(grid[r][c].value)) {
+        return false;
+      } else {
+        squares[grid[r][c].square].push(grid[r][c].value);
+      }
+    };
+  };
+  return true;
+};
+
 export const whichBlock = (row: number, col: number, grid?: NumberGridType, ): {block: any[], square: number} => {
   let block: any[] = [];
   let square: number;
