@@ -34,6 +34,11 @@ export const checkGrid = (grid: GridType): boolean => {
   return true; 
 };
 
+/**
+ * Returns true if grid is filled and there are no duplicates across rows, columns, and in squares.
+ * @param grid 
+ * @returns boolean
+ */
 export const isSolved = (grid: GridType): boolean => {
   const squares: number[][] = [[],[],[],[],[],[],[],[],[]];
   for (let r = 0; r < 9; r++) {
@@ -184,12 +189,12 @@ export const removeNumbers = (grid: NumberGridType, removeCount: number) => {
   let attempts = removeCount;
   counter = 1;
   while (attempts > 0) {
-    let row = randomIndex(8);
-    let col = randomIndex(8);
+    let row = randomIndex(9);
+    let col = randomIndex(9);
     // If that square is already a 0, select a different one
     while (grid[row][col] === 0) {
-      row = randomIndex(8);
-      col = randomIndex(8);
+      row = randomIndex(9);
+      col = randomIndex(9);
     };
     let backup = grid[row][col];
     // console.log('backup: ', backup);

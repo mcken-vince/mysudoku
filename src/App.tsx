@@ -64,6 +64,7 @@ function App() {
     setLoading(true);
     setMessage(null);
     setComplete(false);
+    setSelectedSquare(null);
     let setDifficulty: DifficultyType;
     if (difficulty === 'random') {
       const randomNumber: number = Math.floor(Math.random() * 3);
@@ -90,6 +91,7 @@ function App() {
    */
   const clickRestart = () => {
     setComplete(false);
+    setSelectedSquare(null);
     const resetBoard = [];
     if (activeGrid) {
       for (let row = 0; row < 9; row++) {
