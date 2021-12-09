@@ -1,7 +1,8 @@
 # My Sudoku
 
-A Sudoku puzzle generator. Generate puzzles and solve them!
+- A Sudoku puzzle generator. Generate puzzles and solve them!
 ( This is a work in progress )
+- MySudoku is Deployed on AWS Amplify.
 
 ## Dependencies
 - react ^17.0.2
