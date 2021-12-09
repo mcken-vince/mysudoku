@@ -1,5 +1,5 @@
 import Button from 'react-bootstrap/Button';
-
+import { secondsToTimeString } from '../logic/Game';
 const Timer = (props: TimerProps) => {
   const { time, pause, start, timerPaused, disabled } = props;
 
@@ -12,15 +12,10 @@ const Timer = (props: TimerProps) => {
     }
   };
 
-  const seconds = time % 60;
-  const minutes = Math.floor(time / 60);
-  const hours = Math.floor(time / (60 * 60));
   return (
     <div className='timer'>
       <span>
-        {hours < 10 ? `0${hours}` : hours}:
-        {minutes < 10 ? `0${minutes}` : minutes}:
-        {seconds < 10 ? `0${seconds}` : seconds}
+        {secondsToTimeString(time)}
       </span>
       { !disabled && 
         <Button onClick={handlePause}>{timerPaused ? 'Resume' : 'Pause'}</Button>

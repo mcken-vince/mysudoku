@@ -1,7 +1,7 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, isEqualGrid, GridType, DifficultyType, squareType } from './logic/Game';
+import { generateBoard, isEqualGrid, GridType, DifficultyType, squareType, secondsToTimeString } from './logic/Game';
 import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
@@ -139,12 +139,12 @@ function App() {
             <Button onClick={clickNewGame}>New Game</Button>
             <Button onClick={clickRestart}>Restart</Button>
             { complete && 
-              <h1>{`Puzzle completed in ${timer} seconds!`}</h1>
+              <h1>{`Puzzle completed in ${secondsToTimeString(timer)}!`}</h1>
             }
             { message && 
               <h3>{message}</h3>
             }
-            {!selectDifficulty && 
+            {!selectDifficulty && !complete &&
               <Timer 
                 time={timer} 
                 pause={pauseTimer} 

@@ -109,6 +109,14 @@ export const makeCopyOfGrid = (grid: GridType): GridType => {
   ];
 };
 
+export const secondsToTimeString = (timeInSeconds: number): string => {
+  const seconds = timeInSeconds % 60;
+  const minutes = Math.floor(timeInSeconds / 60);
+  const hours = Math.floor(timeInSeconds / (60 * 60));
+  const timeString = (hours < 10 ? `0${hours}` : hours) + ':' + (minutes < 10 ? `0${minutes}` : minutes) + ':' + (seconds < 10 ? `0${seconds}` : seconds);
+  return timeString;
+};
+
 export type DifficultyType = 'default' | 'easy' | 'medium' | 'difficult';
 
 export type squareType = {row: number, col: number, value: number, changeable?: boolean, square: number};
