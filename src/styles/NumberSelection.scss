@@ -18,6 +18,13 @@
       cursor: pointer;
     }
   }
+  .disabled {
+    &:hover {
+      background-color: inherit;
+      color: inherit;
+      cursor: default;
+    }
+  }
 
   .number-selection-number {
     width: 4em;

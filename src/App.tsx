@@ -163,7 +163,7 @@ function App() {
               selectSquare={setSelectedSquare}
               />
             {!complete && 
-              <NumberSelection handleClick={clickNumber}/>
+              <NumberSelection handleClick={clickNumber} disabled={!selectedSquare || (selectedSquare && !selectedSquare.changeable)}/>
             }
           </>
         }</div>
