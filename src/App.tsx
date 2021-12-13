@@ -1,12 +1,13 @@
 import './styles/App.scss';
 import RegularBoard from './components/RegularBoard';
 import Button from 'react-bootstrap/Button';
-import { generateBoard, isEqualGrid, GridType, DifficultyType, squareType, secondsToTimeString } from './logic/Game';
+import { generateBoard, GridType, DifficultyType, squareType, secondsToTimeString } from './logic/Game';
 import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
 import SelectDifficulty from './components/SelectDifficulty';
 import { isSolved } from './logic/Main';
+import classNames from 'classnames';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -17,7 +18,8 @@ function App() {
   const [message, setMessage] = useState<string | null>(null);
   const [timer, setTimer] = useState<number>(0);
   const [pause, setPause] = useState<boolean>(false);
-  const [selectDifficulty, setSelectDifficulty] = useState<boolean>(true);
+  const [selectDifficulty, setSelectDifficulty] = useState<boolean>(false);
+  const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
   const countRef = useRef<any>(null);
 
   const startTimer = () => {
@@ -78,6 +80,7 @@ function App() {
     } else {
       setDifficulty = difficulty;
     }
+    setSelectedDifficulty(setDifficulty);
     let [newGrid, solvedGrid] = await generateBoard(setDifficulty);
     setActiveGrid(newGrid);
     // setSolutionGrid(solvedGrid);
@@ -131,11 +134,19 @@ function App() {
     }
   };
   
+  const selectedDifficultyClasses = classNames('selected-difficulty', {easy: selectedDifficulty === 'easy', medium: selectedDifficulty === 'medium', difficult: selectedDifficulty === 'difficult'});
+
   return (
     <div className="App">
+        {selectedDifficulty && !loading &&
+          <span className={selectedDifficultyClasses}>
+            {selectedDifficulty[0].toUpperCase() + selectedDifficulty.slice(1)}
+          </span>
+        }
       <div className='buttons'>
         {loading ? <h1>Workin' it...</h1> : 
           <>
+            
             <Button onClick={clickNewGame}>New Game</Button>
             <Button onClick={clickRestart}>Restart</Button>
             { complete && 

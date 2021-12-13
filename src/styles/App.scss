@@ -6,6 +6,32 @@
   align-items: center;
   justify-content: center;
   
+  .selected-difficulty {
+    align-self: center;
+    margin: .5em;
+    font-weight: bold;
+    width: 5em;
+    height: 2em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 25px;
+    color: white;
+
+    &.easy {
+      background-color: green;
+      // border: 2px greenyellow solid;
+    }
+    &.medium {
+      background-color: orange;
+      // border: 2px yellow solid;
+    }
+    &.difficult {
+      background-color: red;
+      // border: 2px orangered solid;
+    }
+  }
+
   .game-container {
     display: flex;
     flex-direction: column;
