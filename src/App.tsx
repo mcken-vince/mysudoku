@@ -10,7 +10,7 @@ import { isSolved } from './logic/Main';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
-  const [solutionGrid, setSolutionGrid] = useState<GridType | null>(null);
+  // const [solutionGrid, setSolutionGrid] = useState<GridType | null>(null);
   const [loading, setLoading] = useState<boolean>(false);
   const [complete, setComplete] = useState<boolean>(false);
   const [selectedSquare, setSelectedSquare] = useState<squareType | null>(null);
@@ -80,7 +80,7 @@ function App() {
     }
     let [newGrid, solvedGrid] = await generateBoard(setDifficulty);
     setActiveGrid(newGrid);
-    setSolutionGrid(solvedGrid);
+    // setSolutionGrid(solvedGrid);
     setLoading(false);
     setTimer(0);
     startTimer();

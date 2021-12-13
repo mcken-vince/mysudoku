@@ -39,11 +39,11 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
   let squaresToRemove: number;
   console.log('difficulty: ', difficulty)
   if (difficulty === 'easy') {
-    squaresToRemove = 20;
+    squaresToRemove = 25;
   } else if (difficulty === 'difficult') {
-    squaresToRemove = 45;
+    squaresToRemove = 43;
   } else {
-    squaresToRemove = 30;
+    squaresToRemove = 35;
   }
   // change 1 back to squaresToRemove
   while (emptySquares(newGrid).length < squaresToRemove) {
