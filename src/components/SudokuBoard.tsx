@@ -1,9 +1,9 @@
 import { rowsToRegions, GridType, squareType } from '../logic/Game';
-import '../styles/RegularBoard.scss';
+import '../styles/SudokuBoard.scss';
 import Region from './Region';
 
 
-const RegularBoard = (props: RegularBoardProps) => {
+const SudokuBoard = (props: SudokuBoardProps) => {
   const { grid, selectSquare, selectedSquare } = props;
   const regions = grid ? rowsToRegions(grid) : [[],[],[],[],[],[],[],[],[]];
 
@@ -23,9 +23,9 @@ const RegularBoard = (props: RegularBoardProps) => {
   );
 };
 
-export default RegularBoard;
+export default SudokuBoard;
 
-export interface RegularBoardProps {
+export interface SudokuBoardProps {
   grid: GridType | null;
   selectSquare: Function;
   selectedSquare: null | squareType;

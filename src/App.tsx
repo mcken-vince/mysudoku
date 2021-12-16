@@ -1,5 +1,5 @@
 import './styles/App.scss';
-import RegularBoard from './components/RegularBoard';
+import SudokuBoard from './components/SudokuBoard';
 import Button from 'react-bootstrap/Button';
 import { generateBoard, GridType, DifficultyType, squareType, secondsToTimeString } from './logic/Game';
 import { useState, useRef } from 'react';
@@ -170,7 +170,7 @@ function App() {
         {selectDifficulty ? <SelectDifficulty onSelect={startNewGame} /> :
         <div className='game-container'>{pause && !complete ? <h1>Game is paused.</h1>:
           <>
-            <RegularBoard 
+            <SudokuBoard 
               grid={activeGrid}
               selectedSquare={selectedSquare}
               selectSquare={setSelectedSquare}
