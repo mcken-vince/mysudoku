@@ -8,6 +8,8 @@ import Timer from './components/Timer';
 import SelectDifficulty from './components/SelectDifficulty';
 import { isSolved } from './logic/Main';
 import classNames from 'classnames';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import DropdownItem from 'react-bootstrap/DropdownItem';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -20,6 +22,7 @@ function App() {
   const [pause, setPause] = useState<boolean>(false);
   const [selectDifficulty, setSelectDifficulty] = useState<boolean>(false);
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
+  const [sudokuMode, setSudokuMode] = useState<'classic' | 'diagonal'>('classic');
   const countRef = useRef<any>(null);
 
   const startTimer = () => {
@@ -140,7 +143,7 @@ function App() {
     <div className="App">
         {selectedDifficulty && !loading &&
           <span className={selectedDifficultyClasses}>
-            {selectedDifficulty[0].toUpperCase() + selectedDifficulty.slice(1)}
+            {sudokuMode[0].toUpperCase() + sudokuMode.slice(1)} - {selectedDifficulty[0].toUpperCase() + selectedDifficulty.slice(1)}
           </span>
         }
       <div className='buttons'>
@@ -149,6 +152,7 @@ function App() {
             
             <Button onClick={clickNewGame}>New Game</Button>
             <Button onClick={clickRestart}>Restart</Button>
+            
             { complete && 
               <h1>{`Puzzle completed in ${secondsToTimeString(timer)}!`}</h1>
             }
@@ -174,8 +178,9 @@ function App() {
               grid={activeGrid}
               selectedSquare={selectedSquare}
               selectSquare={setSelectedSquare}
+              mode={sudokuMode}
               />
-            {!complete && 
+            {!complete && activeGrid &&
               <NumberSelection handleClick={clickNumber} disabled={!selectedSquare || (selectedSquare && !selectedSquare.changeable)}/>
             }
           </>
