@@ -146,7 +146,7 @@ function App() {
 
   return (
     <div className="App">
-        {selectedDifficulty && !loading &&
+        {selectedDifficulty && !loading && selectMode === null &&
           <span className={selectedDifficultyClasses}>
             {sudokuMode[0].toUpperCase() + sudokuMode.slice(1)} - {selectedDifficulty[0].toUpperCase() + selectedDifficulty.slice(1)}
           </span>
