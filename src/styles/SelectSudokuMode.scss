@@ -1,0 +1,11 @@
+.select-mode-container {
+  
+  margin-top: 1em;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  align-items: center;
+  button {
+    width: 8em;
+  }
+}
