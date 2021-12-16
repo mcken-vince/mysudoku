@@ -10,11 +10,9 @@
     align-self: center;
     margin: .5em;
     font-weight: bold;
-    width: 5em;
-    height: 2em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    min-width: fit-content;
+    padding: .1em 1em;
+    display: inline;
     border-radius: 25px;
     color: white;
 
