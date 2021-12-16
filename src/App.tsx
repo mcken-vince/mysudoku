@@ -8,8 +8,7 @@ import Timer from './components/Timer';
 import SelectDifficulty from './components/SelectDifficulty';
 import { isSolved } from './logic/Main';
 import classNames from 'classnames';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-import DropdownItem from 'react-bootstrap/DropdownItem';
+import SelectSudokuMode from './components/SelectSudokuMode';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -20,7 +19,8 @@ function App() {
   const [message, setMessage] = useState<string | null>(null);
   const [timer, setTimer] = useState<number>(0);
   const [pause, setPause] = useState<boolean>(false);
-  const [selectDifficulty, setSelectDifficulty] = useState<boolean>(false);
+  const [selectMode, setSelectMode] = useState<'mode' | 'difficulty' | null>(null);
+  
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
   const [sudokuMode, setSudokuMode] = useState<'classic' | 'diagonal'>('classic');
   const countRef = useRef<any>(null);
@@ -61,11 +61,11 @@ function App() {
    * Handles click of New Game button
    */
   const clickNewGame = () => {
-    setSelectDifficulty(prev => !prev);
+    setSelectMode('mode');
   };
 
   const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
-    setSelectDifficulty(false);
+    setSelectMode(null);
     setLoading(true);
     setMessage(null);
     setComplete(false);
@@ -137,6 +137,11 @@ function App() {
     }
   };
   
+  const handleSelectSudokuMode = (mode: 'classic' | 'diagonal') => {
+    setSudokuMode(mode);
+    setSelectMode('difficulty');
+  };
+
   const selectedDifficultyClasses = classNames('selected-difficulty', {easy: selectedDifficulty === 'easy', medium: selectedDifficulty === 'medium', difficult: selectedDifficulty === 'difficult'});
 
   return (
@@ -152,14 +157,14 @@ function App() {
             
             <Button onClick={clickNewGame}>New Game</Button>
             <Button onClick={clickRestart}>Restart</Button>
-            
+
             { complete && 
               <h1>{`Puzzle completed in ${secondsToTimeString(timer)}!`}</h1>
             }
             { message && 
               <h3>{message}</h3>
             }
-            {!selectDifficulty && !complete &&
+            {(selectMode === null) && !complete &&
               <Timer 
                 time={timer} 
                 pause={pauseTimer} 
@@ -171,20 +176,25 @@ function App() {
           </>
         }
       </div>
-        {selectDifficulty ? <SelectDifficulty onSelect={startNewGame} /> :
-        <div className='game-container'>{pause && !complete ? <h1>Game is paused.</h1>:
-          <>
-            <SudokuBoard 
-              grid={activeGrid}
-              selectedSquare={selectedSquare}
-              selectSquare={setSelectedSquare}
-              mode={sudokuMode}
-              />
-            {!complete && activeGrid &&
-              <NumberSelection handleClick={clickNumber} disabled={!selectedSquare || (selectedSquare && !selectedSquare.changeable)}/>
+      {selectMode === 'mode' && <SelectSudokuMode onSelect={handleSelectSudokuMode}/>}
+        {selectMode === 'difficulty' && <SelectDifficulty onSelect={startNewGame} />}
+        
+        {selectMode === null && 
+          <div className='game-container'>
+            {pause && !complete ? <h1>Game is paused.</h1>:
+              <>
+                <SudokuBoard 
+                  grid={activeGrid}
+                  selectedSquare={selectedSquare}
+                  selectSquare={setSelectedSquare}
+                  mode={sudokuMode}
+                  />
+                {!complete && activeGrid &&
+                  <NumberSelection handleClick={clickNumber} disabled={!selectedSquare || (selectedSquare && !selectedSquare.changeable)}/>
+                }
+              </>
             }
-          </>
-        }</div>
+          </div>
       }
         </div>
   );
