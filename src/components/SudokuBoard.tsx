@@ -29,4 +29,5 @@ export interface SudokuBoardProps {
   grid: GridType | null;
   selectSquare: Function;
   selectedSquare: null | squareType;
+  mode: 'classic' | 'diagonal';
 };
