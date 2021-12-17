@@ -14,7 +14,6 @@ export const checkNumberGrid = (grid: NumberGridType): boolean => {
   for (let row = 0; row < 9; row++) {
     for (let col = 0; col < 9; col++) {
       if (grid[row][col] === 0) {
-        // console.log('checkGrid: false');
         return false;
       }
     };
@@ -32,6 +31,26 @@ export const checkGrid = (grid: GridType): boolean => {
     };
   };
   return true; 
+};
+
+export const diagonalCheck = (grid: NumberGridType, row: number, col: number, value: number) => {
+  const leftDiagonal = [grid[0][0], grid[1][1], grid[2][2], grid[3][3], grid[4][4], grid[5][5], grid[6][6], grid[7][7], grid[8][8]];
+  const rightDiagonal = [grid[0][8], grid[1][7], grid[2][6], grid[3][5], grid[4][4], grid[5][3], grid[6][2], grid[7][1], grid[8][0]];  
+
+  if (row === col) {
+    if (row === 4) {
+      // Center square in both diagonals
+      if (leftDiagonal.includes(value) || rightDiagonal.includes(value)) return false;
+    } else {
+      // Only in left diagonal
+      if (leftDiagonal.includes(value)) return false;
+    }
+  } else if (row + col === 8) {
+    // Only in right diagonal
+    if (rightDiagonal.includes(value)) return false;
+  }
+
+  return true;
 };
 
 /**
@@ -141,7 +160,7 @@ export const solveGrid = (grid: NumberGridType) => {
   return false;
 };
 
-export const fillGrid = (grid: NumberGridType) => {
+export const fillGrid = (grid: NumberGridType, mode: ModeType) => {
   let thisGrid = grid;
   counter = 0;
   for (let i = 0; i < 81; i++) {
@@ -162,6 +181,15 @@ export const fillGrid = (grid: NumberGridType) => {
           if (!thisColumn.includes(value)) {
             // Check if value is already in this 9x9 block
             if (!thisBlock.includes(value)) {
+              
+              if (mode === 'diagonal') {
+                if (!diagonalCheck(grid, row, col, value)) {
+                  // If diagonalCheck finds a conflict
+                  continue;
+                } 
+
+              }
+              // If no conflicts, assign value to the square
               thisGrid[row][col] = value;
               // If grid is complete return true
               if (checkNumberGrid(thisGrid)) {
@@ -169,7 +197,7 @@ export const fillGrid = (grid: NumberGridType) => {
                 return true;
               } else {
                 // If a subsequent recursive call of fillGrid is complete then return true
-                if (fillGrid(thisGrid)) {
+                if (fillGrid(thisGrid, mode)) {
                   return true;
                 } 
               }
@@ -222,3 +250,4 @@ export const removeNumbers = (grid: NumberGridType, removeCount: number) => {
 
 
 export type NumberGridType = number[][];
+export type ModeType = 'classic' | 'diagonal';
