@@ -17,7 +17,7 @@ const SudokuBoard = (props: SudokuBoardProps) => {
     />
   )); 
   
-  const boardClasses = classNames('sudoku-board-container', {diagonal: mode === 'diagonal'})
+  const boardClasses = classNames('sudoku-board-container', {classic: mode === 'classic', diagonal: mode === 'diagonal'})
   return (
     <div className={boardClasses}>
      {regionComponents}
