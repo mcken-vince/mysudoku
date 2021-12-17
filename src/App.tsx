@@ -154,9 +154,9 @@ function App() {
       <div className='buttons'>
         {loading ? <h1>Workin' it...</h1> : 
           <>
-            
+            { !activeGrid && <h1>Welcome to MySudoku!</h1> }
             <Button onClick={clickNewGame}>New Game</Button>
-            <Button onClick={clickRestart}>Restart</Button>
+            { activeGrid && selectMode === null && <Button onClick={clickRestart}>Restart</Button> }
 
             { complete && 
               <h1>{`Puzzle completed in ${secondsToTimeString(timer)}!`}</h1>
@@ -164,7 +164,7 @@ function App() {
             { message && 
               <h3>{message}</h3>
             }
-            {(selectMode === null) && !complete &&
+            {(selectMode === null) && !complete && activeGrid &&
               <Timer 
                 time={timer} 
                 pause={pauseTimer} 
@@ -179,7 +179,7 @@ function App() {
       {selectMode === 'mode' && <SelectSudokuMode onSelect={handleSelectSudokuMode}/>}
         {selectMode === 'difficulty' && <SelectDifficulty onSelect={startNewGame} />}
         
-        {selectMode === null && 
+        {selectMode === null && activeGrid &&
           <div className='game-container'>
             {pause && !complete ? <h1>Game is paused.</h1>:
               <>
