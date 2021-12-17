@@ -1,10 +1,11 @@
+import classNames from 'classnames';
 import { rowsToRegions, GridType, squareType } from '../logic/Game';
 import '../styles/SudokuBoard.scss';
 import Region from './Region';
 
 
 const SudokuBoard = (props: SudokuBoardProps) => {
-  const { grid, selectSquare, selectedSquare } = props;
+  const { grid, selectSquare, selectedSquare, mode } = props;
   const regions = grid ? rowsToRegions(grid) : [[],[],[],[],[],[],[],[],[]];
 
   const regionComponents = regions.map((region, idx) => (
@@ -15,9 +16,10 @@ const SudokuBoard = (props: SudokuBoardProps) => {
       key={idx} 
     />
   )); 
-
+  
+  const boardClasses = classNames('sudoku-board-container', {diagonal: mode === 'diagonal'})
   return (
-    <div className='regular-board-container'>
+    <div className={boardClasses}>
      {regionComponents}
     </div>
   );
