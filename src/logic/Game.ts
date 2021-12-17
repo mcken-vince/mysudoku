@@ -30,14 +30,14 @@ const emptySquares = (grid: NumberGridType): {row: number, col: number}[] => {
   return emptySquares;
 };
 
-export const generateBoard = async (difficulty: DifficultyType = 'default'): Promise<[GridType, GridType]>  => {
+export const generateBoard = async (difficulty: DifficultyType = 'default', mode: 'classic' | 'diagonal'): Promise<[GridType, GridType]>  => {
   let blankGrid: NumberGridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
   let newGrid: NumberGridType = blankGrid;
-  fillGrid(newGrid);
+  fillGrid(newGrid, mode);
   const solutionGrid = [[...newGrid[0]],[...newGrid[1]],[...newGrid[2]],[...newGrid[3]],[...newGrid[4]],[...newGrid[5]],[...newGrid[6]],[...newGrid[7]],[...newGrid[8]]];
   let count = 1;
   let squaresToRemove: number;
-  console.log('difficulty: ', difficulty)
+
   if (difficulty === 'easy') {
     squaresToRemove = 25;
   } else if (difficulty === 'difficult') {
@@ -45,7 +45,7 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
   } else {
     squaresToRemove = 35;
   }
-  // change 1 back to squaresToRemove
+
   while (emptySquares(newGrid).length < squaresToRemove) {
     try {
       removeNumbers(newGrid, 1);
@@ -66,7 +66,7 @@ export const generateBoard = async (difficulty: DifficultyType = 'default'): Pro
     };
   };
   console.log('try count: ', count);
-  console.log('squares removed: ', emptySquares(newGrid).length)
+  console.log('squares removed: ', emptySquares(newGrid).length);
   return [newGridWithCoords, solutionGridWithCoords];
 };
 
