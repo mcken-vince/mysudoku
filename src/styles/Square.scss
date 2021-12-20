@@ -3,6 +3,7 @@ $changeable-text-color: blue;
 $selected-bg-color: #0d6dfd38;
 $samerowcolsq-bg-color: rgb(238, 238, 238);
 $conflict-text-color: red;
+$diagonal-line-color: lightblue;
 
 .square {
   margin: 0;
@@ -25,6 +26,39 @@ $conflict-text-color: red;
   }
   &.selected {
     background-color: $selected-bg-color;
+  }
+  &.right-diagonal {
+    background: 
+    linear-gradient(to top left,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) calc(50% - 6px),
+      $diagonal-line-color 50%,
+      rgba(0,0,0,0) calc(50% + 6px),
+      rgba(0,0,0,0) 100%),
+  }
+  &.left-diagonal {
+    background:  
+    linear-gradient(to top right,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) calc(50% - 6px),
+      $diagonal-line-color 50%,
+      rgba(0,0,0,0) calc(50% + 6px),
+      rgba(0,0,0,0) 100%),
+  }
+  &.right-diagonal.left-diagonal {
+    background: 
+    linear-gradient(to top left,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) calc(50% - 6px),
+      $diagonal-line-color 50%,
+      rgba(0,0,0,0) calc(50% + 6px),
+      rgba(0,0,0,0) 100%),
+    linear-gradient(to top right,
+      rgba(0,0,0,0) 0%,
+      rgba(0,0,0,0) calc(50% - 6px),
+      $diagonal-line-color 50%,
+      rgba(0,0,0,0) calc(50% + 6px),
+      rgba(0,0,0,0) 100%),
   }
   // this needs to be below all other options so that zeros don't show
   &.zero {
