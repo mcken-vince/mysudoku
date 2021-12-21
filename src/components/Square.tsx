@@ -33,7 +33,7 @@ const Square = (props: SquareProps) => {
       changeable: square.changeable, zero: (square.value === 0), 
       selected: isSelectedSquare,
       highlight: isSameValueAsSelectedSquare, 
-      sameRowColSquareDiagonal: sameRowColSquare || sameDiagonal,
+      sameRowColSquareDiagonal: (sameRowColSquare || sameDiagonal) && !isSelectedSquare,
       'center-diagonal': isLeftDiagonal && isRightDiagonal,
       'left-diagonal': isLeftDiagonal,
       'right-diagonal': isRightDiagonal
