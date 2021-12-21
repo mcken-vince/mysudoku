@@ -49,7 +49,7 @@ $diagonal-line-color: lightblue;
       }
     }
   }
-  &.diagonal, &.classic {
+  &.diagonal, &.classic, &.odd, &.even, &.sum {
     .region {
       .square {
         margin: 0;

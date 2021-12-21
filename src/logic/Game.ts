@@ -1,4 +1,4 @@
-import { fillGrid, NumberGridType, removeNumbers, whichBlock } from "./Main";
+import { fillGrid, ModeType, NumberGridType, removeNumbers, whichBlock } from "./Main";
 
 export const shuffleRow = (array: any[]): any[] => {
   let currentIndex: number = array.length;
@@ -30,7 +30,7 @@ const emptySquares = (grid: NumberGridType): {row: number, col: number}[] => {
   return emptySquares;
 };
 
-export const generateBoard = async (difficulty: DifficultyType = 'default', mode: 'classic' | 'diagonal'): Promise<[GridType, GridType]>  => {
+export const generateBoard = async (difficulty: DifficultyType = 'default', mode: ModeType): Promise<[GridType, GridType]>  => {
   let blankGrid: NumberGridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
   let newGrid: NumberGridType = blankGrid;
   fillGrid(newGrid, mode);

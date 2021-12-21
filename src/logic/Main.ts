@@ -250,4 +250,4 @@ export const removeNumbers = (grid: NumberGridType, removeCount: number) => {
 
 
 export type NumberGridType = number[][];
-export type ModeType = 'classic' | 'diagonal';
+export type ModeType = 'classic' | 'diagonal' | 'odd';
