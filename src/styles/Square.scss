@@ -5,94 +5,99 @@ $samerowcolsq-bg-color: rgb(238, 238, 238);
 $conflict-text-color: red;
 $diagonal-line-color: lightblue;
 
-.sudoku-board-container.diagonal {
+.sudoku-board-container {
 
-  .region {
+  &.diagonal {
 
-    .square {
-      
-      &.right-diagonal {
-        background: 
-        linear-gradient(to top left,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) calc(50% - 6px),
-        $diagonal-line-color 50%,
-        rgba(0,0,0,0) calc(50% + 6px),
-        rgba(0,0,0,0) 100%),
-      }
-      &.left-diagonal {
-        background:  
-        linear-gradient(to top right,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) calc(50% - 6px),
-        $diagonal-line-color 50%,
-        rgba(0,0,0,0) calc(50% + 6px),
-        rgba(0,0,0,0) 100%),
-      }
-      &.right-diagonal.left-diagonal {
-        background: 
-        linear-gradient(to top left,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) calc(50% - 6px),
-        $diagonal-line-color 50%,
-        rgba(0,0,0,0) calc(50% + 6px),
-        rgba(0,0,0,0) 100%),
-        linear-gradient(to top right,
-        rgba(0,0,0,0) 0%,
-        rgba(0,0,0,0) calc(50% - 6px),
-        $diagonal-line-color 50%,
-        rgba(0,0,0,0) calc(50% + 6px),
-        rgba(0,0,0,0) 100%),
+    .region {
+
+      .square {
+        
+        &.right-diagonal {
+          background: 
+          linear-gradient(to top left,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) calc(50% - 6px),
+          $diagonal-line-color 50%,
+          rgba(0,0,0,0) calc(50% + 6px),
+          rgba(0,0,0,0) 100%),
+        }
+        &.left-diagonal {
+          background:  
+          linear-gradient(to top right,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) calc(50% - 6px),
+          $diagonal-line-color 50%,
+          rgba(0,0,0,0) calc(50% + 6px),
+          rgba(0,0,0,0) 100%),
+        }
+        &.right-diagonal.left-diagonal {
+          background: 
+          linear-gradient(to top left,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) calc(50% - 6px),
+          $diagonal-line-color 50%,
+          rgba(0,0,0,0) calc(50% + 6px),
+          rgba(0,0,0,0) 100%),
+          linear-gradient(to top right,
+          rgba(0,0,0,0) 0%,
+          rgba(0,0,0,0) calc(50% - 6px),
+          $diagonal-line-color 50%,
+          rgba(0,0,0,0) calc(50% + 6px),
+          rgba(0,0,0,0) 100%),
+        }
       }
     }
   }
-}
-
-
-.square {
-  margin: 0;
-  padding: 0;
-  border: 1px black solid;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: bold;
-
-  &:hover {
-    cursor: pointer;
-  }
-
-  &.changeable {
-    color: $changeable-text-color;
-  }
-  &.highlight {
-    background-color: $highlight-color;
-  }
-  &.selected {
-    background-color: $selected-bg-color;
-  }
-  // this needs to be below all other options so that zeros don't show
-  &.zero {
-    span.square-value {
-      visibility: hidden;
-    }
-  }
-  &.noselect {
-    -webkit-touch-callout: none; /* iOS Safari */
-      -webkit-user-select: none; /* Safari */
-       -khtml-user-select: none; /* Konqueror HTML */
-         -moz-user-select: none; /* Old versions of Firefox */
+  &.diagonal, &.classic {
+    .region {
+      .square {
+        margin: 0;
+        padding: 0;
+        border: 1px black solid;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+        
+        &:hover {
+          cursor: pointer;
+        }
+        
+        &.changeable {
+          color: $changeable-text-color;
+        }
+        &.highlight {
+          background-color: $highlight-color;
+        }
+        &.selected {
+          background-color: $selected-bg-color;
+        }
+        // this needs to be below all other options so that zeros don't show
+        &.zero {
+          span.square-value {
+            visibility: hidden;
+          }
+        }
+        &.noselect {
+          -webkit-touch-callout: none; /* iOS Safari */
+          -webkit-user-select: none; /* Safari */
+          -khtml-user-select: none; /* Konqueror HTML */
+          -moz-user-select: none; /* Old versions of Firefox */
           -ms-user-select: none; /* Internet Explorer/Edge */
-              user-select: none; /* Non-prefixed version, currently
-                                    supported by Chrome, Opera and Firefox */
-  }
-  &.sameRowColSquare {
-    background-color: $samerowcolsq-bg-color;
-  }
-  &.sameSquare {
-    background-color: $samerowcolsq-bg-color;
-  }
-  &.sameRowColSquare.highlight {
-    color: $conflict-text-color;
+          user-select: none; /* Non-prefixed version, currently
+          supported by Chrome, Opera and Firefox */
+        }
+        &.sameRowColSquare {
+          background-color: $samerowcolsq-bg-color;
+        }
+        &.sameSquare {
+          background-color: $samerowcolsq-bg-color;
+        }
+        &.sameRowColSquare.highlight {
+          color: $conflict-text-color;
+        }
+      }
+    }  
   }
 }
