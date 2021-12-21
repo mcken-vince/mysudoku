@@ -11,6 +11,7 @@ const SelectSudokuMode = (props: SelectSudokuModeProps) => {
       <Button className='odd-button' onClick={() => onSelect('odd')}>Odd</Button>
       <Button disabled className='even-button' onClick={() => onSelect('even')}>Even</Button>
       <Button disabled className='sum-button' onClick={() => onSelect('sum')}>Sum</Button>
+      <Button disabled className='multi-button' onClick={() => onSelect('multi')}>Multi</Button>
     </div>
   );
 };
