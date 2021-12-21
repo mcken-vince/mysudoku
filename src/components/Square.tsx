@@ -34,8 +34,10 @@ const Square = (props: SquareProps) => {
       selected: isSelectedSquare,
       highlight: isSameValueAsSelectedSquare, 
       sameRowColSquareDiagonal: sameRowColSquare || sameDiagonal,
+      'center-diagonal': isLeftDiagonal && isRightDiagonal,
       'left-diagonal': isLeftDiagonal,
       'right-diagonal': isRightDiagonal
+      
     }
   );
   

@@ -31,7 +31,7 @@ $diagonal-line-color: lightblue;
           rgba(0,0,0,0) calc(50% + 6px),
           rgba(0,0,0,0) 100%),
         }
-        &.right-diagonal.left-diagonal {
+        &.center-diagonal {
           background: 
           linear-gradient(to top left,
           rgba(0,0,0,0) 0%,
