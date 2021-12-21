@@ -1,5 +1,6 @@
 import classNames from 'classnames';
 import { rowsToRegions, GridType, squareType } from '../logic/Game';
+import { ModeType } from '../logic/Main';
 import '../styles/SudokuBoard.scss';
 import Region from './Region';
 
@@ -14,6 +15,7 @@ const SudokuBoard = (props: SudokuBoardProps) => {
       selectedSquare={selectedSquare} 
       selectSquare={selectSquare} 
       key={idx} 
+      mode={mode}
     />
   )); 
   
@@ -31,5 +33,5 @@ export interface SudokuBoardProps {
   grid: GridType | null;
   selectSquare: Function;
   selectedSquare: null | squareType;
-  mode: 'classic' | 'diagonal';
+  mode: ModeType;
 };

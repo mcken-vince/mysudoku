@@ -1,6 +1,6 @@
 $highlight-color: yellow;
 $changeable-text-color: blue;
-$selected-bg-color: #0d6dfd38;
+$selected-bg-color: rgba(173, 216, 230, 0.438);//#0d6dfd38;
 $samerowcolsq-bg-color: rgb(238, 238, 238);
 $conflict-text-color: red;
 $diagonal-line-color: lightblue;
@@ -88,13 +88,14 @@ $diagonal-line-color: lightblue;
           user-select: none; /* Non-prefixed version, currently
           supported by Chrome, Opera and Firefox */
         }
-        &.sameRowColSquare {
+        &.sameRowColSquareDiagonal {
           background-color: $samerowcolsq-bg-color;
         }
         &.sameSquare {
           background-color: $samerowcolsq-bg-color;
         }
-        &.sameRowColSquare.highlight {
+        &.sameRowColSquareDiagonal.highlight {
+          
           color: $conflict-text-color;
         }
       }

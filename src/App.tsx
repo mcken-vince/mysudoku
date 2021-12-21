@@ -6,7 +6,7 @@ import { useState, useRef } from 'react';
 import NumberSelection from './components/NumberSelection';
 import Timer from './components/Timer';
 import SelectDifficulty from './components/SelectDifficulty';
-import { isSolved } from './logic/Main';
+import { isSolved, ModeType } from './logic/Main';
 import classNames from 'classnames';
 import SelectSudokuMode from './components/SelectSudokuMode';
 
@@ -22,7 +22,7 @@ function App() {
   const [selectMode, setSelectMode] = useState<'mode' | 'difficulty' | null>(null);
   
   const [selectedDifficulty, setSelectedDifficulty] = useState<string | null>(null);
-  const [sudokuMode, setSudokuMode] = useState<'classic' | 'diagonal'>('classic');
+  const [sudokuMode, setSudokuMode] = useState<ModeType>('classic');
   const countRef = useRef<any>(null);
 
   const startTimer = () => {
@@ -137,7 +137,7 @@ function App() {
     }
   };
   
-  const handleSelectSudokuMode = (mode: 'classic' | 'diagonal') => {
+  const handleSelectSudokuMode = (mode: ModeType) => {
     setSudokuMode(mode);
     setSelectMode('difficulty');
   };

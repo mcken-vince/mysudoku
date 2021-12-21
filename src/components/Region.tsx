@@ -1,9 +1,10 @@
 import { squareType } from '../logic/Game';
+import { ModeType } from '../logic/Main';
 import '../styles/Region.scss';
 import Square from "./Square";
 
 const Region = (props: RegionProps) => {
-  const { region, selectSquare, selectedSquare } = props;
+  const { region, selectSquare, selectedSquare, mode } = props;
 
   const squares = region.map((square, idx) => (
     <Square 
@@ -11,6 +12,7 @@ const Region = (props: RegionProps) => {
       selectSquare={selectSquare} 
       square={square} 
       key={idx}
+      mode={mode}
     />
   ));
   return (
@@ -26,4 +28,5 @@ export interface RegionProps {
   region: any[];
   selectSquare: Function;
   selectedSquare: null | squareType;
+  mode: ModeType;
 };
