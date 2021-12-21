@@ -21,12 +21,6 @@ $diagonal-line-color: lightblue;
   &.changeable {
     color: $changeable-text-color;
   }
-  &.highlight {
-    background-color: $highlight-color;
-  }
-  &.selected {
-    background-color: $selected-bg-color;
-  }
   &.right-diagonal {
     background: 
     linear-gradient(to top left,
@@ -59,6 +53,12 @@ $diagonal-line-color: lightblue;
       $diagonal-line-color 50%,
       rgba(0,0,0,0) calc(50% + 6px),
       rgba(0,0,0,0) 100%),
+  }
+  &.highlight {
+    background-color: $highlight-color;
+  }
+  &.selected {
+    background-color: $selected-bg-color;
   }
   // this needs to be below all other options so that zeros don't show
   &.zero {
