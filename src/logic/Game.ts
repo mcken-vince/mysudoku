@@ -65,8 +65,8 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
       solutionGridWithCoords[r].push({row: r, col: c, value: solutionGrid[r][c], square})
     };
   };
-  console.log('try count: ', count);
-  console.log('squares removed: ', emptySquares(newGrid).length);
+  // console.log('try count: ', count);
+  // console.log('squares removed: ', emptySquares(newGrid).length);
   return [newGridWithCoords, solutionGridWithCoords];
 };
 
