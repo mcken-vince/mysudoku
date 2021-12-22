@@ -44,11 +44,14 @@ const SelectSudokuMode = (props: SelectSudokuModeProps) => {
   return (
     <div className='select-mode-container'>
       <h2>Select mode:</h2>   
+      
+      <div className='buttons-container'>
+
         <Button 
           variant={selectedMode === 'classic' ? 'secondary' : 'primary'} 
           className='classic-button' 
           onClick={() => setSelectedMode('classic')}
-        >
+          >
           Classic
         </Button>
 
@@ -61,16 +64,24 @@ const SelectSudokuMode = (props: SelectSudokuModeProps) => {
         </Button>
 
 
-      <Button variant={selectedMode === 'odd' ? 'secondary' : 'primary'}className='odd-button' onClick={() => setSelectedMode('odd')}>Odd</Button>
-      <Button variant={selectedMode === 'even' ? 'secondary' : 'primary'}disabled className='even-button' onClick={() => setSelectedMode('even')}>Even</Button>
-      <Button variant={selectedMode === 'sum' ? 'secondary' : 'primary'}disabled className='sum-button' onClick={() => setSelectedMode('sum')}>Sum</Button>
-      <Button variant={selectedMode === 'multi' ? 'secondary' : 'primary'} disabled className='multi-button' onClick={() => setSelectedMode('multi')}>Multi</Button>
-      <Button className='confirm-button' variant='success' onClick={() => onConfirm(selectedMode)}>Confirm</Button>
+        <Button variant={selectedMode === 'odd' ? 'secondary' : 'primary'}className='odd-button' onClick={() => setSelectedMode('odd')}>Odd</Button>
+        <Button variant={selectedMode === 'even' ? 'secondary' : 'primary'}disabled className='even-button' onClick={() => setSelectedMode('even')}>Even</Button>
+        <Button variant={selectedMode === 'sum' ? 'secondary' : 'primary'}disabled className='sum-button' onClick={() => setSelectedMode('sum')}>Sum</Button>
+        <Button variant={selectedMode === 'multi' ? 'secondary' : 'primary'} disabled className='multi-button' onClick={() => setSelectedMode('multi')}>Multi</Button>
+      </div>
 
-      <Popover placement='bottom'  id='popover' show={selectedMode && displayDescription ? true : false}>
-      <Popover.Header>{displayDescription && displayDescription.title}</Popover.Header>
-      <Popover.Body>{displayDescription && displayDescription.description}</Popover.Body>
-    </Popover>
+      { selectedMode && displayDescription && 
+        <>
+          <div className='description'>
+            <div className='description-header'>
+              <h3 className='description-title'>{displayDescription && displayDescription.title}</h3>
+              <Button className='confirm-button' variant='success' onClick={() => onConfirm(selectedMode)}>Continue</Button>
+            </div>
+            <p className='description-body'>{displayDescription && displayDescription.description}</p>
+          </div>
+          
+        </>
+      }
     </div>
   );
 };
