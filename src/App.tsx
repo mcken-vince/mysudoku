@@ -176,7 +176,7 @@ function App() {
           </>
         }
       </div>
-      {selectMode === 'mode' && <SelectSudokuMode onSelect={handleSelectSudokuMode}/>}
+      {selectMode === 'mode' && <SelectSudokuMode onConfirm={handleSelectSudokuMode}/>}
         {selectMode === 'difficulty' && <SelectDifficulty onSelect={startNewGame} />}
         
         {selectMode === null && activeGrid &&
