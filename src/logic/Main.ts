@@ -193,7 +193,7 @@ export const fillGrid = (grid: NumberGridType, mode: ModeType) => {
               thisGrid[row][col] = value;
               // If grid is complete return true
               if (checkNumberGrid(thisGrid)) {
-                console.log('grid is complete!')
+                // console.log('grid is complete!');
                 return true;
               } else {
                 // If a subsequent recursive call of fillGrid is complete then return true

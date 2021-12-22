@@ -4,7 +4,7 @@ const Timer = (props: TimerProps) => {
   const { time, pause, start, timerPaused, disabled } = props;
 
   const handlePause = () => {
-    console.log('timerPaused:', timerPaused);
+    // console.log('timerPaused:', timerPaused);
     if (timerPaused) {
       start();
     } else {
