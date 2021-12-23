@@ -65,12 +65,13 @@ function App() {
   };
 
   const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
-    setSelectMode(null);
     setLoading(true);
+    setSelectMode(null);
     setMessage(null);
     setComplete(false);
     setSelectedSquare(null);
     let setDifficulty: DifficultyType;
+    // Pick a random difficulty
     if (difficulty === 'random') {
       const randomNumber: number = Math.floor(Math.random() * 3);
       if (randomNumber === 0) {
@@ -84,7 +85,11 @@ function App() {
       setDifficulty = difficulty;
     }
     setSelectedDifficulty(setDifficulty);
+    console.log('about to generate board')
+    let startTimestamp = new Date();
     let [newGrid, solvedGrid] = await generateBoard(setDifficulty, sudokuMode);
+    let endTimestamp = new Date();
+    console.log(`board has been generated in ${endTimestamp.getTime() -  startTimestamp.getTime()} milliseconds`)
     setActiveGrid(newGrid);
     // setSolutionGrid(solvedGrid);
     setLoading(false);
