@@ -177,26 +177,26 @@ function App() {
         }
       </div>
       {selectMode === 'mode' && <SelectSudokuMode onConfirm={handleSelectSudokuMode}/>}
-        {selectMode === 'difficulty' && <SelectDifficulty onSelect={startNewGame} />}
+      {selectMode === 'difficulty' && <SelectDifficulty onSelect={startNewGame} />}
         
-        {selectMode === null && activeGrid &&
-          <div className='game-container'>
-            {pause && !complete ? <h1>Game is paused.</h1>:
-              <>
-                <SudokuBoard 
-                  grid={activeGrid}
-                  selectedSquare={selectedSquare}
-                  selectSquare={setSelectedSquare}
-                  mode={sudokuMode}
-                  />
-                {!complete && activeGrid &&
-                  <NumberSelection handleClick={clickNumber} disabled={!selectedSquare || (selectedSquare && !selectedSquare.changeable)}/>
-                }
-              </>
-            }
-          </div>
-      }
+      {selectMode === null && activeGrid &&
+        <div className='game-container'>
+          {pause && !complete ? <h1>Game is paused.</h1>:
+            <>
+              <SudokuBoard 
+                grid={activeGrid}
+                selectedSquare={selectedSquare}
+                selectSquare={setSelectedSquare}
+                mode={sudokuMode}
+                />
+              {!complete && activeGrid &&
+                <NumberSelection handleClick={clickNumber} disabled={!selectedSquare || (selectedSquare && !selectedSquare.changeable)}/>
+              }
+            </>
+          }
         </div>
+      }
+    </div>
   );
 };
 
