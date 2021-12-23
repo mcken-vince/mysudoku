@@ -19,11 +19,15 @@
   }
 
   .description {
-    width: 100%;
+    width: 80%;
     
     .description-header {
       display: flex;
       justify-content: space-between;
+      align-items: center;
+      button {
+        height: fit-content;
+      }
     }
     display: flex;
     flex-direction: column;
