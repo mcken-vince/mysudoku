@@ -64,8 +64,13 @@ function App() {
     setSelectMode('mode');
   };
 
-  const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
+  const triggerLoading = async () => {
     setLoading(true);
+    console.log('loading triggered')
+  };
+
+  const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
+    await triggerLoading();
     setSelectMode(null);
     setMessage(null);
     setComplete(false);
@@ -85,16 +90,13 @@ function App() {
       setDifficulty = difficulty;
     }
     setSelectedDifficulty(setDifficulty);
-    console.log('about to generate board')
-    let startTimestamp = new Date();
-    let [newGrid, solvedGrid] = await generateBoard(setDifficulty, sudokuMode);
-    let endTimestamp = new Date();
-    console.log(`board has been generated in ${endTimestamp.getTime() -  startTimestamp.getTime()} milliseconds`)
+    const [newGrid, solvedGrid] = await generateBoard(setDifficulty, sudokuMode);
+
     setActiveGrid(newGrid);
     // setSolutionGrid(solvedGrid);
     setLoading(false);
     setTimer(0);
-    startTimer();
+    startTimer();    
   };
   
   /**
@@ -160,9 +162,10 @@ function App() {
         {loading ? <h1>Workin' it...</h1> : 
           <>
             { !activeGrid && <h1>Welcome to MySudoku!</h1> }
-            <Button onClick={clickNewGame}>New Game</Button>
-            { activeGrid && selectMode === null && <Button onClick={clickRestart}>Restart</Button> }
-
+            <Button disabled={loading} onClick={clickNewGame}>New Game</Button>
+            { activeGrid && selectMode === null && 
+              <Button disabled={loading} onClick={clickRestart}>Restart</Button> 
+            }
             { complete && 
               <h1>{`Puzzle completed in ${secondsToTimeString(timer)}!`}</h1>
             }
