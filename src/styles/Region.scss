@@ -25,4 +25,11 @@
   &:nth-of-type(6) {
     border-bottom: 1px;
   }
+
+  @media (max-width: 600px) {
+    grid-template-columns: 1fr 1fr 1fr;
+    height: 32vw;
+    width: 32vw;
+  }
+  
 }
