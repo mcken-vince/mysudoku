@@ -1,4 +1,4 @@
-import { generateBoard } from './Game';
+import { generateBoard } from '../logic/Game';
 
 describe('generateBoard', () => {
   it("generates a new board when calling generateBoard('easy', 'classic')", async () => {
