@@ -2,7 +2,6 @@ import Button from 'react-bootstrap/Button';
 import '../styles/SelectSudokuMode.scss';
 import { ModeType } from '../logic/Main';
 import { useState } from 'react';
-import { Popover } from 'react-bootstrap';
 
 const SelectSudokuMode = (props: SelectSudokuModeProps) => {
   const [selectedMode, setSelectedMode] = useState<ModeType | null>(null);
