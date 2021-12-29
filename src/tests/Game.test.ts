@@ -1,4 +1,4 @@
-import { generateBoard, GridType, makeCopyOfGrid, randomIndex, rowsToRegions, shuffleRow } from '../logic/Game';
+import { generateBoard, GridType, makeCopyOfGrid, randomIndex, rowsToRegions, secondsToTimeString, shuffleRow } from '../logic/Game';
 
 const grid: GridType = [
   [ {row: 0, col: 0, value: 1, square: 0},{row: 0, col: 1, value: 2, square: 0},{row: 0, col: 2, value: 3, square: 0},
@@ -114,6 +114,12 @@ describe('rowsToRegions()', () => {
 
 describe('makeCopyOfGrid()', () => {
   const copyOfGrid = makeCopyOfGrid(grid);
-
   expect(grid).toStrictEqual(copyOfGrid);
+});
+
+describe('secondsToTimeString()', () => {
+  it('should convert a number of seconds to a string displaying hrs, minutes, seconds', () => {
+    const timeString = secondsToTimeString(3660);
+    expect(timeString).toBe('01:01:00');
+  });
 });
