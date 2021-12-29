@@ -3,12 +3,12 @@
   border-radius: 2px;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
-  max-width: 12.5em;
-  
+  max-width: 100%;
   
   .clickable {
     border: 1px black solid;
-    height: 3em;
+    height: 3rem;
+    width: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -31,5 +31,13 @@
   }
   .number-selection-clear {
     width: 300%;
+  }
+
+  @media (max-width: 400px) {
+    width: 100%;
+    
+    .number-selection-number {
+      width: 100%;
+    }
   }
 }

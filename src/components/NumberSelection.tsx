@@ -5,6 +5,7 @@ const NumberSelection = (props: NumberSelectionProps) => {
   const { handleClick, disabled } = props;
   const numberButtonClasses: string = classNames('clickable number-selection-number', { disabled });
   const clearButtonClasses: string = classNames('clickable number-selection-clear', { disabled });
+  
   return (
     <div className='number-selection'>
       <div className={numberButtonClasses} onClick={() => handleClick(1)}>1</div>
