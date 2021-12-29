@@ -1,4 +1,4 @@
-import { generateBoard, shuffleRow } from '../logic/Game';
+import { generateBoard, randomIndex, shuffleRow } from '../logic/Game';
 
 describe('generateBoard()', () => {
   it("generates a new board when calling generateBoard('easy', 'classic')", async () => {
@@ -30,5 +30,26 @@ describe('shuffleRow()', () => {
     });
 
     expect(differences).toBeGreaterThan(0);
-  })
+  });
+});
+
+describe('randomIndex()', () => {
+  it('should return a random number between 0 and the number argument given, non-inclusive', () => {
+    const num1 = randomIndex(9);
+    const num2 = randomIndex(9);
+    const num3 = randomIndex(9);
+    const num4 = randomIndex(9);
+    const num5 = randomIndex(9);
+
+    expect(num1).toBeLessThanOrEqual(8);
+    expect(num1).toBeGreaterThanOrEqual(0);
+    expect(num2).toBeLessThanOrEqual(8);
+    expect(num2).toBeGreaterThanOrEqual(0);
+    expect(num3).toBeLessThanOrEqual(8);
+    expect(num3).toBeGreaterThanOrEqual(0);
+    expect(num4).toBeLessThanOrEqual(8);
+    expect(num4).toBeGreaterThanOrEqual(0);
+    expect(num5).toBeLessThanOrEqual(8);
+    expect(num5).toBeGreaterThanOrEqual(0);
+  });
 });
