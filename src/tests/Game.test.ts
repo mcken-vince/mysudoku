@@ -105,7 +105,10 @@ describe('rowsToRegions()', () => {
 
 
     const flippedGrid = rowsToRegions(grid);
-
+    expect(flippedGrid[0][0].value).toBe(1);
+    expect(flippedGrid[0][3].value).toBe(1);
+    expect(flippedGrid[0][6].value).toBe(1);
+    
   });
 });
 
