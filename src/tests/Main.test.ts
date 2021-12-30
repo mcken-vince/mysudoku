@@ -1,5 +1,5 @@
 import { GridType } from '../logic/Game';
-import { checkGrid, checkNumberGrid, diagonalCheck, NumberGridType } from '../logic/Main';
+import { checkGrid, checkNumberGrid, diagonalCheck, isSolved, NumberGridType } from '../logic/Main';
 
 const gridNoZeros: GridType = [
   [ {row: 0, col: 0, value: 1, square: 0},{row: 0, col: 1, value: 2, square: 0},{row: 0, col: 2, value: 3, square: 0},
@@ -141,12 +141,25 @@ const gridNoConflicts: GridType = [
   ]
 ];
 
-const properNumberGrid: NumberGridType = 
+const unsolvedNumberGrid: NumberGridType = 
   [
     [4,5,2,3,8,1,6,9,7],
     [3,6,9,5,4,7,8,2,1],
     [7,1,8,2,9,6,5,4,3],
     [2,8,4,0,6,3,9,1,5],
+    [5,9,3,4,1,8,7,6,2],
+    [6,7,1,9,5,2,4,3,8],
+    [9,2,6,1,7,5,3,8,4],
+    [1,4,7,8,3,9,2,5,6],
+    [8,3,5,6,2,4,1,7,9]
+  ];
+
+  const solvedNumberGrid: NumberGridType = 
+  [
+    [4,5,2,3,8,1,6,9,7],
+    [3,6,9,5,4,7,8,2,1],
+    [7,1,8,2,9,6,5,4,3],
+    [2,8,4,7,6,3,9,1,5],
     [5,9,3,4,1,8,7,6,2],
     [6,7,1,9,5,2,4,3,8],
     [9,2,6,1,7,5,3,8,4],
@@ -182,17 +195,24 @@ describe('checkGrid()', () => {
 
 describe('diagonalCheck()', () => {
   it('returns true if square is not in either diagonal', () => {
-    const result = diagonalCheck(properNumberGrid, 1, 5, 8);
+    const result = diagonalCheck(unsolvedNumberGrid, 1, 5, 8);
     expect(result).toBe(true);
   });
 
   it('returns true if square is on diagonal and the value given is not in the diagonal', () => {
-    const result = diagonalCheck(properNumberGrid, 3, 3, 7);
+    const result = diagonalCheck(unsolvedNumberGrid, 3, 3, 7);
     expect(result).toBe(true);
   });
 
   it('returns false if square is on diagonal and value is already in the diagonal', () => {
-    const result = diagonalCheck(properNumberGrid, 1, 1, 5);
+    const result = diagonalCheck(unsolvedNumberGrid, 1, 1, 5);
+    expect(result).toBe(false);
+  });
+});
+
+describe('isSolved()', () => {
+  it('returns false if grid is not solved', () => {
+    const result = isSolved(gridWithZeros);
     expect(result).toBe(false);
   });
 });
