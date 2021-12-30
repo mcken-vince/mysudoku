@@ -247,4 +247,16 @@ describe('whichBlock()', () => {
     const result = whichBlock(4, 6);
     expect(result.square).toBe(5);
   });
+  it('value of square is 6 when given a square in block 6', () => {
+    const result = whichBlock(8, 0);
+    expect(result.square).toBe(6);
+  });
+  it('value of square is 7 when given a square in block 7', () => {
+    const result = whichBlock(9, 3);
+    expect(result.square).toBe(7);
+  });
+  it('value of square is 8 when given a square in block 8', () => {
+    const result = whichBlock(8, 8);
+    expect(result.square).toBe(8);
+  });
 });
