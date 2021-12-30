@@ -1,3 +1,4 @@
+import { GridType } from '../logic/Game';
 import { checkGrid, checkNumberGrid } from '../logic/Main';
 
 const gridNoZeros: GridType = [
@@ -116,5 +117,11 @@ describe('checkGrid()', () => {
   it("returns true if grid contains no 0's", () => {
     const result = checkGrid(gridNoZeros);
     expect(result).toBe(true);
+  });
+});
+
+describe('diagonalCheck()', () => {
+  it('returns true if square is not in either diagonal', () => {
+
   });
 });
