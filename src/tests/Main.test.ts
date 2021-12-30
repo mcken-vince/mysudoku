@@ -1,5 +1,5 @@
 import { GridType } from '../logic/Game';
-import { checkGrid, checkNumberGrid, diagonalCheck, isSolved, NumberGridType } from '../logic/Main';
+import { checkGrid, checkNumberGrid, diagonalCheck, isSolved, NumberGridType, whichBlock } from '../logic/Main';
 
 const gridNoZeros: GridType = [
   [ {row: 0, col: 0, value: 1, square: 0},{row: 0, col: 1, value: 2, square: 0},{row: 0, col: 2, value: 3, square: 0},
@@ -219,5 +219,20 @@ describe('isSolved()', () => {
   it('returns true if grid is solved', () => {
     const result = isSolved(solvedGrid);
     expect(result).toBe(true);
+  });
+});
+
+describe('whichBlock()', () => {
+  it('value of square is 0 when given a square in block 0', () => {
+    const result = whichBlock(1, 1);
+    expect(result.square).toBe(0);
+  });
+  it('value of square is 1 when given a square in block 1', () => {
+    const result = whichBlock(2, 5);
+    expect(result.square).toBe(1);
+  });
+  it('value of square is 2 when given a square in block 2', () => {
+    const result = whichBlock(0, 8);
+    expect(result.square).toBe(2);
   });
 });
