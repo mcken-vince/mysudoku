@@ -94,7 +94,7 @@ const gridWithZeros: GridType = [
   ]
 ];
 
-const gridNoConflicts: GridType = [
+const solvedGrid: GridType = [
   [ {row: 0, col: 0, value: 4, square: 0},{row: 0, col: 1, value: 5, square: 0},{row: 0, col: 2, value: 2, square: 0},
     {row: 0, col: 3, value: 3, square: 1},{row: 0, col: 4, value: 8, square: 1},{row: 0, col: 5, value: 1, square: 1},
     {row: 0, col: 6, value: 6, square: 2},{row: 0, col: 7, value: 9, square: 2},{row: 0, col: 8, value: 7, square: 2}
@@ -214,5 +214,10 @@ describe('isSolved()', () => {
   it('returns false if grid is not solved', () => {
     const result = isSolved(gridWithZeros);
     expect(result).toBe(false);
+  });
+
+  it('returns true if grid is solved', () => {
+    const result = isSolved(solvedGrid);
+    expect(result).toBe(true);
   });
 });
