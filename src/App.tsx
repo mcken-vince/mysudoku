@@ -166,7 +166,7 @@ function App() {
             { activeGrid && selectMode === null && 
               <Button disabled={loading} onClick={clickRestart}>Restart</Button> 
             }
-            { complete && 
+            { complete && selectMode === null &&
               <h1>{`Puzzle completed in ${secondsToTimeString(timer)}!`}</h1>
             }
             { message && 
