@@ -1,4 +1,4 @@
-import { checkNumberGrid } from '../logic/Main';
+import { checkGrid, checkNumberGrid } from '../logic/Main';
 
 const gridNoZeros: GridType = [
   [ {row: 0, col: 0, value: 1, square: 0},{row: 0, col: 1, value: 2, square: 0},{row: 0, col: 2, value: 3, square: 0},
@@ -109,10 +109,12 @@ describe('checkNumberGrid()', () => {
 
 describe('checkGrid()', () => {
   it("returns false if grid contains any 0's", () => {
-
+    const result = checkGrid(gridWithZeros);
+    expect(result).toBe(false);
   });
 
   it("returns true if grid contains no 0's", () => {
-
+    const result = checkGrid(gridNoZeros);
+    expect(result).toBe(true);
   });
 });
