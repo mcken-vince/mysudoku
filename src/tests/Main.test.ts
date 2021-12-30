@@ -154,7 +154,7 @@ const unsolvedNumberGrid: NumberGridType =
     [8,3,5,6,2,4,1,7,9]
   ];
 
-  const solvedNumberGrid: NumberGridType = 
+const solvedNumberGrid: NumberGridType = 
   [
     [4,5,2,3,8,1,6,9,7],
     [3,6,9,5,4,7,8,2,1],
@@ -205,7 +205,7 @@ describe('diagonalCheck()', () => {
   });
 
   it('returns false if square is on diagonal and value is already in the diagonal', () => {
-    const result = diagonalCheck(unsolvedNumberGrid, 1, 1, 5);
+    const result = diagonalCheck(solvedNumberGrid, 1, 1, 5);
     expect(result).toBe(false);
   });
 });
