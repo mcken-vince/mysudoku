@@ -28,7 +28,7 @@ const Square = (props: SquareProps) => {
   
   const squareClasses: string = classNames(
     'square', 
-    'noselect', 
+    'no-select', 
     { 
       changeable: square.changeable, zero: (square.value === 0), 
       selected: isSelectedSquare,
