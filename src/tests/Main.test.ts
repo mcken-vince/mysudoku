@@ -141,7 +141,7 @@ const gridNoConflicts: GridType = [
   ]
 ];
 
-const numberGridNoConflicts: NumberGridType = 
+const properNumberGrid: NumberGridType = 
   [
     [4,5,2,3,8,1,6,9,7],
     [3,6,9,5,4,7,8,2,1],
@@ -182,12 +182,17 @@ describe('checkGrid()', () => {
 
 describe('diagonalCheck()', () => {
   it('returns true if square is not in either diagonal', () => {
-    const result = diagonalCheck(numberGridNoConflicts, 1, 5, 8);
+    const result = diagonalCheck(properNumberGrid, 1, 5, 8);
     expect(result).toBe(true);
   });
 
   it('returns true if square is on diagonal and the value given is not in the diagonal', () => {
-    const result = diagonalCheck(numberGridNoConflicts, 3, 3, 7);
+    const result = diagonalCheck(properNumberGrid, 3, 3, 7);
     expect(result).toBe(true);
+  });
+
+  it('returns false if square is on diagonal and value is already in the diagonal', () => {
+    const result = diagonalCheck(properNumberGrid, 1, 1, 5);
+    expect(result).toBe(false);
   });
 });
