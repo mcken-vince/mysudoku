@@ -235,4 +235,16 @@ describe('whichBlock()', () => {
     const result = whichBlock(0, 8);
     expect(result.square).toBe(2);
   });
+  it('value of square is 3 when given a square in block 3', () => {
+    const result = whichBlock(3, 2);
+    expect(result.square).toBe(3);
+  });
+  it('value of square is 4 when given a square in block 4', () => {
+    const result = whichBlock(5, 5);
+    expect(result.square).toBe(4);
+  });
+  it('value of square is 5 when given a square in block 5', () => {
+    const result = whichBlock(4, 6);
+    expect(result.square).toBe(5);
+  });
 });
