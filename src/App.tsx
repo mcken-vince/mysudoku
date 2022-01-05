@@ -64,6 +64,10 @@ function App() {
     setSelectMode('mode');
   };
 
+  const handleStartNewGame = (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
+    setLoading(true)
+    startNewGame(difficulty);
+  };
 
   const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
     setLoading(true);
