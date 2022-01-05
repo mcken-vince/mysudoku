@@ -120,6 +120,7 @@ describe('makeCopyOfGrid()', () => {
 describe('secondsToTimeString()', () => {
   it('should convert a number of seconds to a string displaying hrs, minutes, seconds', () => {
     const timeString = secondsToTimeString(3660);
+    expect(typeof timeString).toBe('string');
     expect(timeString).toBe('01:01:00');
   });
 });
