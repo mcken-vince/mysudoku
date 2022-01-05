@@ -1,0 +1,8 @@
+.loading-container {
+  display: flex;
+  flex-wrap: wrap;
+  // border and grow are the two animation options for React-Bootstrap's Spinner component
+  .spinner-border, .spinner-grow {
+    margin-left: 1em;
+  }
+}

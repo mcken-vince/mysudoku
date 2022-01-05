@@ -1,4 +1,5 @@
 import Spinner from "react-bootstrap/Spinner";
+import '../styles/Loading.scss';
 
 const Loading = (props: LoadingProps) => {
 
