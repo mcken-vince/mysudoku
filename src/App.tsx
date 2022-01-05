@@ -65,8 +65,10 @@ function App() {
   };
 
   const handleStartNewGame = (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
-    setLoading(true)
-    startNewGame(difficulty);
+    setLoading(true);
+    setTimeout(() => {
+      startNewGame(difficulty);
+    }, 0);
   };
 
   const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
@@ -186,7 +188,7 @@ function App() {
         }
       </div>
       {selectMode === 'mode' && <SelectSudokuMode onConfirm={handleSelectSudokuMode}/>}
-      {selectMode === 'difficulty' && <SelectDifficulty onSelect={startNewGame} />}
+      {selectMode === 'difficulty' && <SelectDifficulty onSelect={handleStartNewGame} />}
         
       {selectMode === null && activeGrid &&
         <div className='game-container'>
