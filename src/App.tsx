@@ -66,6 +66,7 @@ function App() {
 
   const handleStartNewGame = (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
     setLoading(true);
+    // This setTimeout causes loading state to be set to true before the entirety of startNewGame is called
     setTimeout(() => {
       startNewGame(difficulty);
     }, 0);
