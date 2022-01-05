@@ -64,6 +64,10 @@ function App() {
     setSelectMode('mode');
   };
 
+  /**
+   * Sets loading state to true before passing difficulty argument to startNewGame function.
+   * @param difficulty 
+   */
   const handleStartNewGame = (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
     setLoading(true);
     // This setTimeout causes loading state to be set to true before the entirety of startNewGame is called
@@ -73,7 +77,6 @@ function App() {
   };
 
   const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
-    setLoading(true);
     setSelectMode(null);
     setMessage(null);
     setComplete(false);
