@@ -64,13 +64,9 @@ function App() {
     setSelectMode('mode');
   };
 
-  const triggerLoading = async () => {
-    setLoading(true);
-    console.log('loading triggered')
-  };
 
   const startNewGame = async (difficulty: 'easy' | 'medium' | 'difficult' | 'random') => {
-    await triggerLoading();
+    setLoading(true);
     setSelectMode(null);
     setMessage(null);
     setComplete(false);
