@@ -9,6 +9,7 @@ import SelectDifficulty from './components/SelectDifficulty';
 import { isSolved, ModeType } from './logic/Main';
 import classNames from 'classnames';
 import SelectSudokuMode from './components/SelectSudokuMode';
+import Loading from './components/Loading';
 
 function App() {
   const [activeGrid, setActiveGrid] = useState<GridType | null>(null);
@@ -166,7 +167,7 @@ function App() {
           </span>
         }
       <div className='buttons'>
-        {loading ? <h1>Workin' it...</h1> : 
+        {loading ? <Loading/> : 
           <>
             { !activeGrid && <h1>Welcome to MySudoku!</h1> }
             <Button disabled={loading} onClick={clickNewGame}>New Game</Button>
@@ -192,7 +193,7 @@ function App() {
         }
       </div>
       {selectMode === 'mode' && <SelectSudokuMode onConfirm={handleSelectSudokuMode}/>}
-      {selectMode === 'difficulty' && <SelectDifficulty onSelect={handleStartNewGame} />}
+      {selectMode === 'difficulty' && <SelectDifficulty onSelect={handleStartNewGame} disableButtons={loading} />}
         
       {selectMode === null && activeGrid &&
         <div className='game-container'>
