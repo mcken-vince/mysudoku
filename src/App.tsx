@@ -98,7 +98,7 @@ function App() {
     }
     setSelectedDifficulty(setDifficulty);
     // const [newGrid, solvedGrid] = await generateBoard(setDifficulty, sudokuMode);
-    const newGrid = (await generateBoard(setDifficulty, sudokuMode))[0];
+    const newGrid = (await generateBoard(setDifficulty, sudokuMode));
     
     setActiveGrid(newGrid);
     // setSolutionGrid(solvedGrid);

@@ -30,7 +30,7 @@ const emptySquares = (grid: NumberGridType): {row: number, col: number}[] => {
   return emptySquares;
 };
 
-export const generateBoard = async (difficulty: DifficultyType = 'default', mode: ModeType): Promise<[GridType, GridType]>  => {
+export const generateBoard = async (difficulty: DifficultyType = 'default', mode: ModeType): Promise<GridType>  => {
   let blankGrid: NumberGridType = [ [0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0],[0,0,0,0,0,0,0,0,0] ];
   let newGrid: NumberGridType = blankGrid;
   fillGrid(newGrid, mode);
@@ -61,13 +61,12 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
     solutionGridWithCoords.push([]);
     for (let c = 0; c < 9; c++) {
       const square = whichBlock(r, c).square;
-      newGridWithCoords[r].push({row: r, col: c, value: newGrid[r][c], changeable: (newGrid[r][c] === 0), square});
-      solutionGridWithCoords[r].push({row: r, col: c, value: solutionGrid[r][c], square})
+      newGridWithCoords[r].push({row: r, col: c, value: newGrid[r][c], changeable: (newGrid[r][c] === 0), square, solution: solutionGrid[r][c]});
     };
   };
   // console.log('try count: ', count);
   // console.log('squares removed: ', emptySquares(newGrid).length);
-  return [newGridWithCoords, solutionGridWithCoords];
+  return newGridWithCoords;
 };
 
 export const isEqualGrid = (grid1: GridType, grid2: GridType): boolean => {
@@ -123,7 +122,7 @@ export const secondsToTimeString = (timeInSeconds: number): string => {
 
 export type DifficultyType = 'default' | 'easy' | 'medium' | 'difficult';
 
-export type squareType = {row: number, col: number, value: number, changeable?: boolean, square: number};
+export type squareType = {row: number, col: number, value: number, changeable?: boolean, square: number, solution: number};
 export type num = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0;
 // export type conflictType = {column: number, row: number};
 

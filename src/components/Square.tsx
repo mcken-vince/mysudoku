@@ -37,7 +37,7 @@ const Square = (props: SquareProps) => {
       'center-diagonal': isLeftDiagonal && isRightDiagonal,
       'left-diagonal': isLeftDiagonal,
       'right-diagonal': isRightDiagonal,
-      'odd': mode === 'odd' && square.changeable
+      'odd': mode === 'odd' && square.changeable && square.solution % 2 !== 0
     }
   );
   
