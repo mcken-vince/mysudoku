@@ -70,15 +70,6 @@ $diagonal-line-color: lightblue;
         &.highlight {
           background-color: $highlight-color;
         }
-        &.selected {
-          background-color: $selected-bg-color;
-        }
-        // this needs to be below all other options so that zeros don't show
-        &.zero {
-          span.square-value {
-            visibility: hidden;
-          }
-        }
         &.no-select {
           -webkit-touch-callout: none; /* iOS Safari */
           -webkit-user-select: none; /* Safari */
@@ -96,6 +87,19 @@ $diagonal-line-color: lightblue;
         }
         &.sameRowColSquareDiagonal.highlight {
           color: $conflict-text-color;
+        }
+        &.odd {
+          background-color: darken($color: $samerowcolsq-bg-color, $amount: 25)
+        }
+        &.selected {
+          background-color: $selected-bg-color;
+        }
+        
+        // this needs to be below all other options so that zeros don't show
+        &.zero {
+          span.square-value {
+            visibility: hidden;
+          }
         }
       }
     }  

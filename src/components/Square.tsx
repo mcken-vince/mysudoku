@@ -36,8 +36,8 @@ const Square = (props: SquareProps) => {
       sameRowColSquareDiagonal: (sameRowColSquare || sameDiagonal) && !isSelectedSquare,
       'center-diagonal': isLeftDiagonal && isRightDiagonal,
       'left-diagonal': isLeftDiagonal,
-      'right-diagonal': isRightDiagonal
-      
+      'right-diagonal': isRightDiagonal,
+      'odd': mode === 'odd' && square.changeable
     }
   );
   
