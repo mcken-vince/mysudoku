@@ -79,17 +79,17 @@ $diagonal-line-color: lightblue;
           user-select: none; /* Non-prefixed version, currently
           supported by Chrome, Opera and Firefox */
         }
-        &.sameRowColSquareDiagonal {
-          background-color: $samerowcolsq-bg-color;
-        }
-        &.sameSquare {
-          background-color: $samerowcolsq-bg-color;
-        }
         &.sameRowColSquareDiagonal.highlight {
           color: $conflict-text-color;
         }
+        &.sameRowColSquareDiagonal {
+          background-color: darken($color: $samerowcolsq-bg-color, $amount: 5);
+        }
+        &.sameSquare {
+          background-color: darken($color: $samerowcolsq-bg-color, $amount: 5);
+        }
         &.odd {
-          background-color: darken($color: $samerowcolsq-bg-color, $amount: 25)
+          background-color: lightblue; 
         }
         &.selected {
           background-color: $selected-bg-color;
