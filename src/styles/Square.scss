@@ -88,7 +88,7 @@ $diagonal-line-color: lightblue;
         &.sameSquare {
           background-color: darken($color: $samerowcolsq-bg-color, $amount: 5);
         }
-        &.odd {
+        &.odd, .even {
           background-color: lightblue; 
         }
         &.selected {
