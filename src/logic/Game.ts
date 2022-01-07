@@ -78,17 +78,23 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
 
     };
   };
+  let squaresToHighlight: number;
   if (mode === 'odd') {
     // Shuffle the odd-valued squares and highlight a quarter of them
     shuffleRow(oddSquares);
-    const squaresToHighlight = Math.floor(oddSquares.length / 4);
+    squaresToHighlight = Math.floor(oddSquares.length / 4);
     for (let x = 0; x < squaresToHighlight; x++) {
       oddSquares[x].highlight = true;
     };
   }
+  if (mode === 'even') {
+    shuffleRow(evenSquares);
+    squaresToHighlight = Math.floor(evenSquares.length / 4);
+    for (let x = 0; x < squaresToHighlight; x++) {
+      evenSquares[x].highlight = true;
+    }
+  }
 
-  // console.log('try count: ', count);
-  // console.log('squares removed: ', emptySquares(newGrid).length);
   return newGridWithCoords;
 };
 
