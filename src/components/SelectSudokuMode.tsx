@@ -67,7 +67,7 @@ const SelectSudokuMode = (props: SelectSudokuModeProps) => {
           variant={selectedMode === 'odd' ? 'secondary' : 'primary'} 
           className='odd-button' 
           onClick={() => setSelectedMode('odd')}
-          disabled
+
         >
           Odd
         </Button>
