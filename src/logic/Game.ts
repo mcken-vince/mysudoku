@@ -57,7 +57,8 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
   // Add coordinates to 
   const newGridWithCoords: GridType = [];
   const solutionGridWithCoords: GridType = [];
-  const oddSquares = [];
+  const oddSquares: squareType[] = [];
+  const evenSquares: squareType[] = [];
   for (let r = 0; r < 9; r++) {
     newGridWithCoords.push([]);
     solutionGridWithCoords.push([]);
@@ -66,9 +67,15 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
       newGridWithCoords[r].push({row: r, col: c, value: newGrid[r][c], changeable: (newGrid[r][c] === 0), square, solution: solutionGrid[r][c]});
       
       // If this square has been removed and its value is odd 
-      if (newGrid[r][c] !== solutionGrid[r][c] && solutionGrid[r][c] % 2 !== 0) {
-        oddSquares.push(newGridWithCoords[r][c]);
+      if (newGrid[r][c] !== solutionGrid[r][c]) {
+
+        if (solutionGrid[r][c] % 2 === 0) {
+          evenSquares.push(newGridWithCoords[r][c]);
+        } else {
+          oddSquares.push(newGridWithCoords[r][c]);
+        }
       }
+
     };
   };
   if (mode === 'odd') {
