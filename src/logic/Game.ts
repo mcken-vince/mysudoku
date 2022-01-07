@@ -69,14 +69,17 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
       if (newGrid[r][c] !== solutionGrid[r][c] && solutionGrid[r][c] % 2 !== 0) {
         oddSquares.push(newGridWithCoords[r][c]);
       }
-      // Shuffle the odd-valued squares
-      shuffleRow(oddSquares);
-      for (let count = Math.floor(oddSquares.length / 4); count > 0; count--) {
-        oddSquares[count].highlight = true;
-      }
-
     };
   };
+  if (mode === 'odd') {
+    // Shuffle the odd-valued squares and highlight a quarter of them
+    shuffleRow(oddSquares);
+    const squaresToHighlight = Math.floor(oddSquares.length / 4);
+    for (let count = 0; count < squaresToHighlight; count++) {
+      oddSquares[count].highlight = true;
+    };
+  }
+
   // console.log('try count: ', count);
   // console.log('squares removed: ', emptySquares(newGrid).length);
   return newGridWithCoords;
