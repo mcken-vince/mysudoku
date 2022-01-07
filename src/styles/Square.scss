@@ -67,9 +67,6 @@ $diagonal-line-color: lightblue;
         &.changeable {
           color: $changeable-text-color;
         }
-        &.highlight {
-          background-color: $highlight-color;
-        }
         &.no-select {
           -webkit-touch-callout: none; /* iOS Safari */
           -webkit-user-select: none; /* Safari */
@@ -88,8 +85,11 @@ $diagonal-line-color: lightblue;
         &.sameSquare {
           background-color: darken($color: $samerowcolsq-bg-color, $amount: 5);
         }
-        &.odd, .even {
+        &.odd, &.even {
           background-color: lightblue; 
+        }
+        &.highlight {
+          background-color: $highlight-color;
         }
         &.selected {
           background-color: $selected-bg-color;
