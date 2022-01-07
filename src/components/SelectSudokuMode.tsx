@@ -72,7 +72,14 @@ const SelectSudokuMode = (props: SelectSudokuModeProps) => {
           Odd
         </Button>
         
-        <Button variant={selectedMode === 'even' ? 'secondary' : 'primary'}disabled className='even-button' onClick={() => setSelectedMode('even')}>Even</Button>
+        <Button 
+          variant={selectedMode === 'even' ? 'secondary' : 'primary'}
+          className='even-button' 
+          onClick={() => setSelectedMode('even')}
+        >
+          Even
+        </Button>
+        
         <Button variant={selectedMode === 'sum' ? 'secondary' : 'primary'}disabled className='sum-button' onClick={() => setSelectedMode('sum')}>Sum</Button>
         <Button variant={selectedMode === 'multi' ? 'secondary' : 'primary'} disabled className='multi-button' onClick={() => setSelectedMode('multi')}>Multi</Button>
       </div>
