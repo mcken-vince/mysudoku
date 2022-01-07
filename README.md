@@ -2,7 +2,7 @@
 
 - A Sudoku puzzle generator. Generate puzzles and solve them!
 ( This is a work in progress )
-Modes implemented to date: classic, diagonal, odd, even
+- Available varieties: classic, diagonal, odd, even.
 - MySudoku is Deployed on AWS Amplify.
 
 ## Dependencies
