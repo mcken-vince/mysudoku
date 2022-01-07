@@ -75,8 +75,8 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
     // Shuffle the odd-valued squares and highlight a quarter of them
     shuffleRow(oddSquares);
     const squaresToHighlight = Math.floor(oddSquares.length / 4);
-    for (let count = 0; count < squaresToHighlight; count++) {
-      oddSquares[count].highlight = true;
+    for (let x = 0; x < squaresToHighlight; x++) {
+      oddSquares[x].highlight = true;
     };
   }
 
