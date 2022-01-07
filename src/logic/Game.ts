@@ -37,7 +37,6 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
   const solutionGrid = [[...newGrid[0]],[...newGrid[1]],[...newGrid[2]],[...newGrid[3]],[...newGrid[4]],[...newGrid[5]],[...newGrid[6]],[...newGrid[7]],[...newGrid[8]]];
   let count = 1;
   let squaresToRemove: number;
-
   if (difficulty === 'easy') {
     squaresToRemove = 25;
   } else if (difficulty === 'difficult') {
@@ -45,6 +44,8 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
   } else {
     squaresToRemove = 35;
   }
+
+
 
   while (emptySquares(newGrid).length < squaresToRemove) {
     try {
@@ -56,12 +57,24 @@ export const generateBoard = async (difficulty: DifficultyType = 'default', mode
   // Add coordinates to 
   const newGridWithCoords: GridType = [];
   const solutionGridWithCoords: GridType = [];
+  const oddSquares = [];
   for (let r = 0; r < 9; r++) {
     newGridWithCoords.push([]);
     solutionGridWithCoords.push([]);
     for (let c = 0; c < 9; c++) {
       const square = whichBlock(r, c).square;
       newGridWithCoords[r].push({row: r, col: c, value: newGrid[r][c], changeable: (newGrid[r][c] === 0), square, solution: solutionGrid[r][c]});
+      
+      // If this square has been removed and its value is odd 
+      if (newGrid[r][c] !== solutionGrid[r][c] && solutionGrid[r][c] % 2 !== 0) {
+        oddSquares.push(newGridWithCoords[r][c]);
+      }
+      // Shuffle the odd-valued squares
+      shuffleRow(oddSquares);
+      for (let count = Math.floor(oddSquares.length / 4); count > 0; count--) {
+        oddSquares[count].highlight = true;
+      }
+
     };
   };
   // console.log('try count: ', count);
@@ -122,7 +135,7 @@ export const secondsToTimeString = (timeInSeconds: number): string => {
 
 export type DifficultyType = 'default' | 'easy' | 'medium' | 'difficult';
 
-export type squareType = {row: number, col: number, value: number, changeable?: boolean, square: number, solution: number};
+export type squareType = {row: number, col: number, value: number, changeable?: boolean, square: number, solution: number, highlight?: boolean};
 export type num = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 0;
 // export type conflictType = {column: number, row: number};
 
