@@ -31,6 +31,6 @@ describe('<Region />', () => {
     renderRegion();
     const square = screen.getByText(1);
     square.click();
-    expect(selectSquare).toHaveBeenCalled();
+    expect(selectSquare).toHaveBeenCalledWith({row: 0, col: 0, value: 1, square: 0, solution: 1});
   });
 });
