@@ -25,7 +25,7 @@ const Region = (props: RegionProps) => {
 export default Region;
 
 export interface RegionProps {
-  region: any[];
+  region: squareType[];
   selectSquare: Function;
   selectedSquare: null | squareType;
   mode: ModeType;
