@@ -16,9 +16,9 @@ const Region = (props: RegionProps) => {
     />
   ));
   return (
-  <div className='region'>
-    {squares}
-  </div>
+    <div className='region'>
+      {squares}
+    </div>
   );
 };
 
