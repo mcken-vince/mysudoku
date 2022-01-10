@@ -18,7 +18,7 @@ describe('<SelectDifficulty />', () => {
   it('renders without crashing and calls onSelect when a button is clicked', () => {
     renderSelectDifficulty();
     fireEvent.click(screen.getByTestId('select-diff-button-easy'));
-    expect(onSelect).toHaveBeenCalled();
+    expect(onSelect).toHaveBeenCalledWith('easy');
   });
 
   it('buttons are disabled when disableButtons prop is true, and onSelect is not called when buttons are clicked', () => {
