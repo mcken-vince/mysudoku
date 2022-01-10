@@ -21,4 +21,11 @@ describe('<SelectDifficulty />', () => {
     expect(onSelect).toHaveBeenCalled();
   });
 
+  it('buttons are disabled when disableButtons prop is true, and onSelect is not called when buttons are clicked', () => {
+    renderSelectDifficulty({ disableButtons: true });
+    const easyButton = screen.getByTestId('select-diff-button-easy');
+    expect(easyButton).toBeDisabled();
+    easyButton.click();
+    expect(onSelect).not.toHaveBeenCalled();
+  });
 });
