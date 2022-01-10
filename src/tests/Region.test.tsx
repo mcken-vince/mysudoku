@@ -27,7 +27,10 @@ const renderRegion = (props: Partial<RegionProps> = {}) => {
 };
 
 describe('<Region />', () => {
-  it('renders without crashing', () => {
+  it('renders without crashing and calls selectSquare() when a square is clicked', () => {
     renderRegion();
+    const square = screen.getByText(1);
+    square.click();
+    expect(selectSquare).toHaveBeenCalled();
   });
 });
