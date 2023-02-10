@@ -16,16 +16,16 @@ const Region = (props: RegionProps) => {
     />
   ));
   return (
-  <div className='region'>
-    {squares}
-  </div>
+    <div className='region'>
+      {squares}
+    </div>
   );
 };
 
 export default Region;
 
 export interface RegionProps {
-  region: any[];
+  region: squareType[];
   selectSquare: Function;
   selectedSquare: null | squareType;
   mode: ModeType;
