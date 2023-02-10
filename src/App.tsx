@@ -8,7 +8,7 @@ import {
   squareType,
   secondsToTimeString,
 } from "./logic/Game";
-import { useState, useRef, useEffect, KeyboardEvent } from "react";
+import { useState, useRef, useEffect } from "react";
 import NumberSelection from "./components/NumberSelection";
 import Timer from "./components/Timer";
 import SelectDifficulty from "./components/SelectDifficulty";
@@ -39,7 +39,7 @@ function App() {
 
   useEffect(() => {
     const keyUpListener = (e: any) => {
-      keyUpListenerLogic(e, setSelectedSquare);
+      keyUpListenerLogic(e, setSelectedSquare, handleValueChange);
     }
     document.addEventListener("keyup", keyUpListener);
 
