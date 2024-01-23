@@ -37,17 +37,41 @@ function App() {
   const [sudokuMode, setSudokuMode] = useState<ModeType>("classic");
   const countRef = useRef<any>(null);
 
+function setSquareValue(value: number): void {
+  if (selectedSquare?.row && selectedSquare?.col) {
+    handleValueChange(selectedSquare?.row, selectedSquare?.col, value)
+  }
+}
+
   useEffect(() => {
-    const keyUpListener = (e: any) => {
-      keyUpListenerLogic(e, setSelectedSquare);
+    const arrowKeyUpListener = (event: any) => {
+      keyUpListenerLogic(event, setSelectedSquare, setSquareValue);
     }
-    document.addEventListener("keyup", keyUpListener);
+    document.addEventListener("keyup", arrowKeyUpListener);
 
     const cleanup = () => {
-      document.removeEventListener("keyup", keyUpListener);
+      document.removeEventListener("keyup", arrowKeyUpListener);
     };
     return cleanup;
   }, []);
+
+  useEffect(() => {
+    const valueKeyUpListener = (event: any) => {
+      if (event.code.includes('Digit')) {
+        const digitValue = parseInt(event?.code?.slice(-1) || '0')
+        return clickNumber(digitValue)
+      } 
+      if (event.code === 'Backspace') {
+        return clickNumber(null);
+      }
+    }
+    document.addEventListener("keyup", valueKeyUpListener);
+
+    const cleanup = () => {
+      document.removeEventListener("keyup", valueKeyUpListener);
+    };
+    return cleanup;
+  }, [selectedSquare])
 
   const startTimer = () => {
     // Clear any existing intervals before starting a new one
@@ -87,7 +111,7 @@ function App() {
             [...prev[8]],
           ]
         : null;
-      updatedGrid && (updatedGrid[row][col].value = value);
+      if (updatedGrid) updatedGrid[row][col].value = value;
       return updatedGrid;
     });
     setTimeout(() => checkSolution(), 1);
