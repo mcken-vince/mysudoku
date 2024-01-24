@@ -45,7 +45,7 @@ function setSquareValue(value: number): void {
 
   useEffect(() => {
     const arrowKeyUpListener = (event: any) => {
-      keyUpListenerLogic(event, setSelectedSquare, setSquareValue);
+      keyUpListenerLogic(event, setSelectedSquare);
     }
     document.addEventListener("keyup", arrowKeyUpListener);
 
